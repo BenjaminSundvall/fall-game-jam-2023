@@ -11,34 +11,36 @@ const CONTROLLER_CROSSHAIR_DIST = 200
 var aim_point = Vector2(CONTROLLER_CROSSHAIR_DIST, 0)
 var movement_input_vector = Vector2(0, 0)
 var aim_input_vector = Vector2(0, 0)
+var paused
 
 func handle_input():
-	self.movement_input_vector = Input.get_vector("MoveLeft", "MoveRight", "MoveUp", "MoveDown")
-	self.aim_input_vector = Input.get_vector("AimLeft", "AimRight", "AimUp", "AimDown")
+	if !self.paused:
+		self.movement_input_vector = Input.get_vector("MoveLeft", "MoveRight", "MoveUp", "MoveDown")
+		self.aim_input_vector = Input.get_vector("AimLeft", "AimRight", "AimUp", "AimDown")
 
-	# Movement
-	self.velocity = self.speed * self.movement_input_vector
+		# Movement
+		self.velocity = self.speed * self.movement_input_vector
 
-	# Aim
-	if self.input_mode == InputMode.CONTROLLER and aim_input_vector:
-		self.aim_point = CONTROLLER_CROSSHAIR_DIST * aim_input_vector.normalized()
-	elif self.input_mode == InputMode.KEYBOARD:
-		self.aim_point = get_global_mouse_position() - position
-	$Crosshair.position = self.aim_point
-	$Camera.position = self.aim_point
-	
-	# Interact
-	if Input.is_action_just_pressed("Interact"):
-		print("Interact")
+		# Aim
+		if self.input_mode == InputMode.CONTROLLER and aim_input_vector:
+			self.aim_point = CONTROLLER_CROSSHAIR_DIST * aim_input_vector.normalized()
+		elif self.input_mode == InputMode.KEYBOARD:
+			self.aim_point = get_global_mouse_position() - position
+		$Crosshair.position = self.aim_point
+		$Camera.position = self.aim_point
+		
+		# Interact
+		if Input.is_action_just_pressed("Interact"):
+			print("Interact")
 
-	# Dodge
-	if Input.is_action_just_pressed("Dodge"):
-		print("Dodge")
+		# Dodge
+		if Input.is_action_just_pressed("Dodge"):
+			print("Dodge")
 
-	# Attacking
-	if Input.is_action_just_pressed("Attack"):
-		print("Attack")
-		get_node("Weapon").attack(aim_point)
+		# Attacking
+		if Input.is_action_just_pressed("Attack"):
+			print("Attack")
+			get_node("Weapon").attack(aim_point)
 
 
 func take_damage(damage):
@@ -65,6 +67,7 @@ func _die():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	self.paused = false
 	pass # Replace with function body.
 
 

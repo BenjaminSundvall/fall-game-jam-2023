@@ -19,7 +19,7 @@ func _process(delta):
 
 func _on_continue_up():
 	toggle = false
-	#Player.paused = !toggle
+	Player.paused = toggle
 	self.visible = toggle
 	pass
 
@@ -32,7 +32,8 @@ func _on_restart_up():
 	pass
 
 func _input(event):
+	self.global_position = Player.get_node("Camera").global_position
 	if event.is_action_released("ToggleMenu"):
 		toggle = !toggle
-		#Player.paused = !toggle
+		Player.paused = toggle
 		self.visible = toggle
