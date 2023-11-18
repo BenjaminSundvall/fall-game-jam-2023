@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://r0sypiaqn3rn"]
+[gd_scene load_steps=15 format=3 uid="uid://r0sypiaqn3rn"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_304ua"]
 [ext_resource type="Texture2D" uid="uid://cfik6i6ivsvun" path="res://Player/player.png" id="1_q75xs"]
@@ -6,54 +6,83 @@
 [ext_resource type="Texture2D" uid="uid://dj1xvry3du8wp" path="res://crosshair.png" id="3_cnrdk"]
 [ext_resource type="PackedScene" uid="uid://dvumbit0kpsy" path="res://Weapon/Weapon.tscn" id="5_4aana"]
 
-[sub_resource type="Animation" id="Animation_tukkh"]
-resource_name = "player_idle"
-length = 2.2
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerSprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [0, 9]
-}
+[sub_resource type="AtlasTexture" id="AtlasTexture_xgxqp"]
+atlas = ExtResource("1_q75xs")
+region = Rect2(30, 70, 1211, 1182)
 
-[sub_resource type="Animation" id="Animation_r4hl1"]
-resource_name = "player_move_down"
-length = 0.7
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerSprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [1, 2, 3, 4, 5, 6, 7]
-}
+[sub_resource type="AtlasTexture" id="AtlasTexture_dkbcv"]
+atlas = ExtResource("1_q75xs")
+region = Rect2(1241, 2434, 1211, 1182)
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_d8kyv"]
-_data = {
-"player_idle": SubResource("Animation_tukkh"),
-"player_move_down": SubResource("Animation_r4hl1")
-}
+[sub_resource type="AtlasTexture" id="AtlasTexture_y24lq"]
+atlas = ExtResource("1_q75xs")
+region = Rect2(1237, 50, 1212, 1187)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v600c"]
+atlas = ExtResource("1_q75xs")
+region = Rect2(2449, 50, 1212, 1187)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xb324"]
+atlas = ExtResource("1_q75xs")
+region = Rect2(3661, 50, 1212, 1187)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0qmin"]
+atlas = ExtResource("1_q75xs")
+region = Rect2(1237, 1237, 1212, 1187)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pabqd"]
+atlas = ExtResource("1_q75xs")
+region = Rect2(2449, 1237, 1212, 1187)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qxikx"]
+atlas = ExtResource("1_q75xs")
+region = Rect2(3661, 1237, 1212, 1187)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v6y8i"]
+animations = [{
+"frames": [{
+"duration": 40.0,
+"texture": SubResource("AtlasTexture_xgxqp")
+}, {
+"duration": 4.0,
+"texture": SubResource("AtlasTexture_dkbcv")
+}],
+"loop": true,
+"name": &"player_idle",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y24lq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v600c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xb324")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0qmin")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pabqd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qxikx")
+}],
+"loop": true,
+"name": &"player_move",
+"speed": 20.0
+}]
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 script = ExtResource("1_304ua")
 
-[node name="PlayerSprite" type="Sprite2D" parent="."]
+[node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.12, 0.12)
-texture = ExtResource("1_q75xs")
-hframes = 4
-vframes = 4
-frame = 3
+sprite_frames = SubResource("SpriteFrames_v6y8i")
+animation = &"player_idle"
+frame_progress = 0.345434
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 7)
@@ -61,12 +90,15 @@ scale = Vector2(0.4, 0.4)
 shape = ExtResource("2_251kr")
 
 [node name="Crosshair" type="Sprite2D" parent="."]
-scale = Vector2(0.2, 0.2)
+scale = Vector2(0.3, 0.3)
 texture = ExtResource("3_cnrdk")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_d8kyv")
-}
-
 [node name="Weapon" parent="." instance=ExtResource("5_4aana")]
+
+[node name="Camera" type="Camera2D" parent="."]
+zoom = Vector2(0.75, 0.75)
+position_smoothing_enabled = true
+drag_left_margin = 0.1
+drag_top_margin = 0.1
+drag_right_margin = 0.1
+drag_bottom_margin = 0.1
