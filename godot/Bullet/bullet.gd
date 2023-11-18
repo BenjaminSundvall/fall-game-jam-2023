@@ -19,9 +19,11 @@ func _movement(dir):
 
 func _on_body_entered(body):
 	if(body.is_in_group("players")):
+		queue_free()
 		pass
 	elif(body.is_in_group("enemies")):
 		body.take_damage(damage)
+		queue_free()
 	else:
 		pass
 	
