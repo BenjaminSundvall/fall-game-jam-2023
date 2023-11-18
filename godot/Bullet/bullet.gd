@@ -19,7 +19,7 @@ func _movement(dir):
 	pass
 
 func _on_body_entered(body):
-	if (friendly in ["players, enemies"]):
+	if (friendly in ["players", "enemies"]):
 		if(!body.is_in_group(friendly)):
 			body.take_damage(damage)
 			queue_free()
