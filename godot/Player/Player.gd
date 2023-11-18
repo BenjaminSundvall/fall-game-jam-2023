@@ -3,9 +3,9 @@ extends CharacterBody2D
 enum InputMode {KEYBOARD, CONTROLLER}
 
 @export var health = 100
-@export var speed = 400
+@export var speed = 800
 @export var acceleration = 8000
-var friction = acceleration / speed
+var friction = speed / acceleration
 @export var input_mode = InputMode.KEYBOARD
 
 const CONTROLLER_CROSSHAIR_DIST = 100
@@ -40,8 +40,9 @@ func handle_input():
 
 
 func apply_traction(delta):
-	var traction = Input.get_vector("MoveLeft", "MoveRight", "MoveUp", "MoveDown")
-	self.velocity += traction * acceleration * delta
+	#var traction = Input.get_vector("MoveLeft", "MoveRight", "MoveUp", "MoveDown")
+	#self.velocity += self.movement_input_vector * acceleration * delta
+	self.velocity = self.speed * self.movement_input_vector
 
 
 func apply_friction(delta):
