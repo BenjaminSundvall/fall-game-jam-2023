@@ -18,7 +18,6 @@ func _movement(dir):
 	pass
 
 func _on_body_entered(body):
-	print("Hit something")
 	if(body.is_in_group("players")):
 		queue_free()
 		pass
