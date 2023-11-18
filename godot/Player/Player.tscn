@@ -1,30 +1,13 @@
 [gd_scene load_steps=8 format=3 uid="uid://r0sypiaqn3rn"]
 
-[ext_resource type="Script" path="res://Player/Player.gd" id="1_l755n"]
-[ext_resource type="Texture2D" uid="uid://cx0lk2vpgvus5" path="res://Player/player_move.png" id="2_5joai"]
-[ext_resource type="Shape2D" uid="uid://b7s20s7oa4w0f" path="res://Player/player_hitbox.tres" id="3_mbyf4"]
-[ext_resource type="Texture2D" uid="uid://dj1xvry3du8wp" path="res://crosshair.png" id="4_pjc6w"]
+[ext_resource type="Script" path="res://Player/Player.gd" id="1_304ua"]
+[ext_resource type="Texture2D" uid="uid://cvt1fvyjohj3h" path="res://Player/player.png" id="1_q75xs"]
+[ext_resource type="Shape2D" uid="uid://b7s20s7oa4w0f" path="res://Player/player_hitbox.tres" id="2_251kr"]
+[ext_resource type="Texture2D" uid="uid://dj1xvry3du8wp" path="res://crosshair.png" id="3_cnrdk"]
 
-[sub_resource type="Animation" id="Animation_dt6uq"]
-resource_name = "player_idle"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerSprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [1, 0]
-}
-
-[sub_resource type="Animation" id="Animation_k0xe3"]
+[sub_resource type="Animation" id="Animation_r4hl1"]
 resource_name = "player_move_down"
 length = 0.7
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -38,33 +21,48 @@ tracks/0/keys = {
 "values": [1, 2, 3, 4, 5, 6, 7]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_8c1yx"]
-_data = {
-"player_idle": SubResource("Animation_dt6uq"),
-"player_move_down": SubResource("Animation_k0xe3")
+[sub_resource type="Animation" id="Animation_tukkh"]
+resource_name = "player_idle"
+length = 2.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 9]
 }
 
-[node name="Player" type="CharacterBody2D" groups=["players"]]
-script = ExtResource("1_bxt4v")
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_d8kyv"]
+_data = {
+"player_idle": SubResource("Animation_tukkh"),
+"player_move_down": SubResource("Animation_r4hl1")
+}
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_304ua")
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
-texture_filter = 1
 scale = Vector2(0.05, 0.05)
-texture = ExtResource("2_5joai")
+texture = ExtResource("1_q75xs")
 hframes = 4
-vframes = 2
-frame = 1
+vframes = 4
+frame = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -0.5)
-scale = Vector2(0.2, 0.2)
-shape = ExtResource("3_mbyf4")
+scale = Vector2(0.15, 0.15)
+shape = ExtResource("2_251kr")
 
 [node name="Crosshair" type="Sprite2D" parent="."]
 scale = Vector2(0.2, 0.2)
-texture = ExtResource("4_pjc6w")
+texture = ExtResource("3_cnrdk")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_8c1yx")
+"": SubResource("AnimationLibrary_d8kyv")
 }

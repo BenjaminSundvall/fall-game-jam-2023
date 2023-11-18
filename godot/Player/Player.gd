@@ -5,7 +5,7 @@ enum InputMode {KEYBOARD, CONTROLLER}
 @export var health = 100
 @export var speed = 400
 @export var acceleration = 8000
-@export var friction = acceleration / speed
+var friction = acceleration / speed
 @export var input_mode = InputMode.KEYBOARD
 
 const CONTROLLER_CROSSHAIR_DIST = 100
