@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0ldmvppqglhc"]
+
+[ext_resource type="Script" path="res://Weapon/Pistol.gd" id="1_0andh"]
+[ext_resource type="PackedScene" uid="uid://5fvupghx4bnt" path="res://Bullet/Bullet.tscn" id="2_xchl1"]
+
+[node name="Weapon" type="Node2D"]
+script = ExtResource("1_0andh")
+bullet_damage = 20
+Bullet = ExtResource("2_xchl1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
