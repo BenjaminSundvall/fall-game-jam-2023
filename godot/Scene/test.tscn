@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://7tv17oluprfa"]
+[gd_scene load_steps=6 format=3 uid="uid://7tv17oluprfa"]
 
 [ext_resource type="PackedScene" uid="uid://r0sypiaqn3rn" path="res://Player/Player.tscn" id="1_wcg18"]
 [ext_resource type="PackedScene" uid="uid://de62soql8i2c6" path="res://Weapon/Sword.tscn" id="2_updxs"]
-[ext_resource type="PackedScene" uid="uid://dukqc2whb7ppd" path="res://Enemy/Enemy.tscn" id="3_0okgs"]
 [ext_resource type="Script" path="res://GUI/Settings.gd" id="4_74s37"]
+[ext_resource type="PackedScene" uid="uid://djqcpmmybus6q" path="res://Enemy/EnemyHandler.tscn" id="4_lw713"]
+[ext_resource type="PackedScene" uid="uid://dtbh6a6swpwbe" path="res://Enemy/spawner.tscn" id="5_4lyrv"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -11,9 +12,6 @@
 input_mode = 1
 
 [node name="Weapon" parent="Player" instance=ExtResource("2_updxs")]
-
-[node name="Enemy" parent="." instance=ExtResource("3_0okgs")]
-position = Vector2(701, 230)
 
 [node name="Settings" type="Control" parent="."]
 layout_direction = 1
@@ -50,3 +48,14 @@ text = "Exit"
 [node name="Restart" type="Button" parent="Settings/Container"]
 layout_mode = 2
 text = "Restart"
+
+[node name="EnemyHandler" parent="." instance=ExtResource("4_lw713")]
+
+[node name="spawner" parent="." instance=ExtResource("5_4lyrv")]
+position = Vector2(572, 138)
+
+[node name="spawner2" parent="." instance=ExtResource("5_4lyrv")]
+position = Vector2(131, 417)
+
+[node name="spawner3" parent="." instance=ExtResource("5_4lyrv")]
+position = Vector2(954, 479)
