@@ -1,7 +1,7 @@
 extends Node2D
 class_name Weapon
 
-var bullet_damage
+@export var bullet_damage:int
 @export var Bullet:PackedScene
 
 # Called when the node enters the scene tree for the first time.

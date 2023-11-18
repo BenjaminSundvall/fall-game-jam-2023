@@ -14,4 +14,5 @@ func attack(direction):
 	get_node("/root").add_child(bullet)
 	bullet.global_position = global_position
 	bullet.direction = direction.normalized()
+	bullet.damage = bullet_damage
 	

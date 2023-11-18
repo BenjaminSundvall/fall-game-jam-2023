@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dcldqnat1m2vi" path="res://icon.svg" id="2_gq3tx"]
 [ext_resource type="Shape2D" uid="uid://b7s20s7oa4w0f" path="res://Player/player_hitbox.tres" id="3_7iiw3"]
 
-[node name="Enemy" type="CharacterBody2D"]
+[node name="Enemy" type="CharacterBody2D" groups=["enemies"]]
 script = ExtResource("1_ukaqr")
 
 [node name="TextureRect" type="TextureRect" parent="."]
