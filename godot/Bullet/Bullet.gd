@@ -4,6 +4,9 @@ var damage
 var speed
 var direction
 var enemy
+var max_lifetime
+var lifetime
+
 
 
 # Called when the node enters the scene tree for the first time.
