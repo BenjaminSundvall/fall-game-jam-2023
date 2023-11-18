@@ -1,13 +1,55 @@
-[gd_scene load_steps=2 format=3 uid="uid://de62soql8i2c6"]
+[gd_scene load_steps=5 format=3 uid="uid://de62soql8i2c6"]
 
 [ext_resource type="Script" path="res://Weapon/Sword.gd" id="1_1obu3"]
+[ext_resource type="Texture2D" uid="uid://bdyt3bmapb24m" path="res://LeBaguette.png" id="2_7wvsx"]
+
+[sub_resource type="Animation" id="Animation_nlfih"]
+resource_name = "attackAnimation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/Sprite2D2:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.7, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [2.1293, 2.44346, 1.74533, 2.1293]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationPlayer/Sprite2D2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.7, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-0.999996, -59), Vector2(12, -59), Vector2(-12, -59), Vector2(-0.999996, -59)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nnfj3"]
+_data = {
+"attackAnimation": SubResource("Animation_nlfih")
+}
 
 [node name="Weapon" type="Node2D"]
 script = ExtResource("1_1obu3")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
-polygon = PackedVector2Array(0, -1, -28, -45, -18, -53, -9, -56, 0, -57, 11, -55, 21, -51, 29, -45)
+polygon = PackedVector2Array(0, -1, -25.9612, -31.8289, -64, -78, -41, -99, -19, -112, 0, -121, 31, -109, 49, -94, 70, -76)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_nnfj3")
+}
+
+[node name="Sprite2D2" type="Sprite2D" parent="AnimationPlayer"]
+position = Vector2(-0.999996, -59)
+rotation = 2.1293
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_7wvsx")
