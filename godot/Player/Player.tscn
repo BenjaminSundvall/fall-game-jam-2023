@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cfik6i6ivsvun" path="res://Player/player.png" id="1_q75xs"]
 [ext_resource type="Shape2D" uid="uid://b7s20s7oa4w0f" path="res://Player/player_hitbox.tres" id="2_251kr"]
 [ext_resource type="Texture2D" uid="uid://dj1xvry3du8wp" path="res://crosshair.png" id="3_cnrdk"]
-[ext_resource type="PackedScene" uid="uid://dvumbit0kpsy" path="res://Weapon/Weapon.tscn" id="5_4aana"]
+[ext_resource type="PackedScene" uid="uid://de62soql8i2c6" path="res://Weapon/Sword.tscn" id="5_7306w"]
 
 [sub_resource type="Animation" id="Animation_tukkh"]
 resource_name = "player_idle"
@@ -45,7 +45,7 @@ _data = {
 "player_move_down": SubResource("Animation_r4hl1")
 }
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[node name="CharacterBody2D" type="CharacterBody2D" groups=["players"]]
 script = ExtResource("1_304ua")
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
@@ -53,7 +53,6 @@ scale = Vector2(0.12, 0.12)
 texture = ExtResource("1_q75xs")
 hframes = 4
 vframes = 4
-frame = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 7)
@@ -69,4 +68,4 @@ libraries = {
 "": SubResource("AnimationLibrary_d8kyv")
 }
 
-[node name="Weapon" parent="." instance=ExtResource("5_4aana")]
+[node name="Weapon" parent="." instance=ExtResource("5_7306w")]
