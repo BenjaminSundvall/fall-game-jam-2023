@@ -16,3 +16,11 @@ func _process(delta):
 
 func attack(direction):
 	pass
+	
+func _get_enemy():
+	if get_parent().is_in_group("players"):
+		return "enemies"
+	elif get_parent().is_in_group("enemies"):
+		return "players"
+	else:
+		return ""
