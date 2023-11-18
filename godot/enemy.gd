@@ -33,6 +33,6 @@ func start_attacking():
 	attack = true
 	
 func take_damage(damage):
-	health += damage
+	health -= damage
 	if health <= 0:
 		self._die()
