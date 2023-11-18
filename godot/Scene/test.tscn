@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://7tv17oluprfa"]
+[gd_scene load_steps=7 format=3 uid="uid://7tv17oluprfa"]
 
 [ext_resource type="Texture2D" uid="uid://d4hu0hx1n68ek" path="res://ground-tile.png" id="1_743my"]
 [ext_resource type="PackedScene" uid="uid://r0sypiaqn3rn" path="res://Player/Player.tscn" id="1_wcg18"]
 [ext_resource type="PackedScene" uid="uid://dukqc2whb7ppd" path="res://Enemy/Enemy.tscn" id="3_0okgs"]
+[ext_resource type="PackedScene" uid="uid://dbjf3mj0tcf7w" path="res://Weapon/Shotgun.tscn" id="4_ynu87"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hxyc1"]
 texture = ExtResource("1_743my")
@@ -26,3 +27,5 @@ position = Vector2(701, 230)
 
 [node name="Player" parent="." instance=ExtResource("1_wcg18")]
 input_mode = 1
+
+[node name="Weapon" parent="Player" instance=ExtResource("4_ynu87")]
