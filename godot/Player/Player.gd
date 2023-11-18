@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 enum InputMode {KEYBOARD, CONTROLLER}
 
-@export var health = 100
+@export var health = 10000
 @export var speed = 800
 @export var input_mode = InputMode.KEYBOARD
 

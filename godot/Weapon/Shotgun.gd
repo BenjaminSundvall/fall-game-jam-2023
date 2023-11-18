@@ -11,11 +11,11 @@ func _ready():
 func _process(delta):
 	pass
 
-var bullet_speed = 50
+var bullet_speed = 30
 var pellets = 5
 var damage_per_pellet = 5
 var spread = 30 #degrees
-var pellet_max_lifetime = 0.3
+var pellet_max_lifetime = 0.3 
 
 
 func attack(direction):

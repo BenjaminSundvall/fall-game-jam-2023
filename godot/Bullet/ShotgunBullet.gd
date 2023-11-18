@@ -16,6 +16,7 @@ func _process(delta):
 
 func _movement(dir):
 	position += dir * speed
+	rotation = dir.angle()
 	pass
 
 func _on_body_entered(body):
