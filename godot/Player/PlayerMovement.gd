@@ -9,10 +9,6 @@ enum InputMode {KEYBOARD, CONTROLLER}
 @export var input_mode = InputMode.KEYBOARD
 
 func get_input():
-	# Attacking
-	if Input.is_action_just_pressed("Attack"):
-		print("Attack")
-	
 	# Interact
 	if Input.is_action_just_pressed("Interact"):
 		print("Interact")
@@ -30,6 +26,10 @@ func get_input():
 	elif input_mode == InputMode.KEYBOARD:
 		aim_point = get_global_mouse_position() - position
 		$Crosshair.position = aim_point
+		
+		# Attacking
+	if Input.is_action_just_pressed("Attack"):
+		get_node("Weapon").attack(aim_point)
 
 
 func apply_traction(delta):

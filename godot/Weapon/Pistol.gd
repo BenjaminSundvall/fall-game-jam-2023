@@ -1,6 +1,5 @@
 extends Weapon
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -12,5 +11,7 @@ func _process(delta):
 
 func attack(direction):
 	var bullet = Bullet.instantiate()
-	bullet.global_position = bullet.get_parent().global_position
-	bullet.direction = direction
+	get_node("/root").add_child(bullet)
+	bullet.global_position = global_position
+	bullet.direction = direction.normalized()
+	

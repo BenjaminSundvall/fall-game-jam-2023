@@ -1,6 +1,6 @@
 extends Area2D
 var damage
-var speed = 500
+var speed = 20
 var direction
 
 # Called when the node enters the scene tree for the first time.
@@ -10,7 +10,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	_movement(direction.normalized())
+	_movement(direction)
 	pass
 
 func _movement(dir):
