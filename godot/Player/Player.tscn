@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://r0sypiaqn3rn"]
+
+[ext_resource type="Script" path="res://PlayerMovement.gd" id="1_77d6x"]
+[ext_resource type="Texture2D" uid="uid://dj5yj30o4evjx" path="res://bread.png" id="2_pop41"]
+[ext_resource type="Shape2D" uid="uid://b7s20s7oa4w0f" path="res://player_hitbox.tres" id="3_mbyf4"]
+[ext_resource type="Texture2D" uid="uid://dj1xvry3du8wp" path="res://crosshair.png" id="4_pjc6w"]
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_77d6x")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_pop41")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
+shape = ExtResource("3_mbyf4")
+
+[node name="Crosshair" type="Sprite2D" parent="."]
+texture = ExtResource("4_pjc6w")
