@@ -14,7 +14,7 @@ func attack(direction):
 	var bullet = Bullet.instantiate()
 	get_node("/root").add_child(bullet)
 	bullet.enemy = enemy
-	bullet.global_position = global_position
+	bullet.global_position = self.global_position
 	bullet.direction = direction.normalized()
 	bullet.damage = bullet_damage
 
