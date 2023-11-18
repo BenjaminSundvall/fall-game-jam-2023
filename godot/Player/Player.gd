@@ -41,6 +41,8 @@ func handle_input():
 		if Input.is_action_just_pressed("Attack"):
 			print("Attack")
 			get_node("Weapon").attack(aim_point)
+	else:
+		self.velocity = Vector2(0,0)
 
 
 func take_damage(damage):
