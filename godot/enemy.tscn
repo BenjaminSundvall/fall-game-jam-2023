@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://dukqc2whb7ppd"]
+
+[ext_resource type="Script" path="res://enemy.gd" id="1_23unw"]
+[ext_resource type="Texture2D" uid="uid://dcldqnat1m2vi" path="res://icon.svg" id="2_6bavq"]
+[ext_resource type="Shape2D" uid="uid://b7s20s7oa4w0f" path="res://player_hitbox.tres" id="3_rvp8p"]
+
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_23unw")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 128.0
+offset_bottom = 128.0
+texture = ExtResource("2_6bavq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(64, 64)
+shape = ExtResource("3_rvp8p")
