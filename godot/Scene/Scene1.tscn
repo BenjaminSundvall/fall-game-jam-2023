@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://yr3vsaptx6so"]
+[gd_scene load_steps=4 format=3 uid="uid://dsoega50hhiwr"]
 
 [ext_resource type="PackedScene" uid="uid://xsyng2vvhkvc" path="res://Tilemap/BakeryTilemap.tscn" id="1_tuqod"]
 [ext_resource type="PackedScene" uid="uid://r0sypiaqn3rn" path="res://Player/Player.tscn" id="2_vwsj7"]
+[ext_resource type="PackedScene" uid="uid://by7ujwm60uric" path="res://Weapon/CroissantBoomerang.tscn" id="3_brprh"]
 
 [node name="Scene1" type="Node2D"]
 
@@ -10,5 +11,5 @@ layer_0/tile_data = PackedInt32Array(-65546, 65537, 8, 65526, 65537, 8, 65528, 6
 layer_1/tile_data = PackedInt32Array(-196618, 65537, 1, -196616, 196609, 1, -65544, 1114113, 1, -131079, 851969, 3, -196614, 196609, 1, -196612, 196609, 1, -131076, 851969, 1, -65540, 589825, 1, 196604, 1114113, 5, 262140, 1114113, 1, 393212, 1114113, 1, 327677, 851969, 3, -196610, 196609, 1, -131074, 851969, 5, -262144, 196609, 1, -262142, 196609, 1, -262140, 196609, 1, -196604, 1441793, 5, 196612, 851969, 5, 262148, 1507329, 1, -262138, 196609, 1, -262136, 327681, 1, -131067, 1114113, 1, -65538, 1507329, 1)
 
 [node name="CharacterBody2D" parent="TileMap" instance=ExtResource("2_vwsj7")]
-y_sort_enabled = true
-position = Vector2(67, 141)
+
+[node name="Weapon" parent="TileMap/CharacterBody2D" instance=ExtResource("3_brprh")]

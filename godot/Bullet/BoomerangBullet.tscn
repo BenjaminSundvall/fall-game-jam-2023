@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://t8fkxcchr0he"]
+
+[ext_resource type="Script" path="res://Bullet/Bullet.gd" id="1_q1kq7"]
+
+[node name="BoomerangBullet" type="Area2D"]
+script = ExtResource("1_q1kq7")
