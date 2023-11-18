@@ -1,0 +1,72 @@
+extends CharacterBody2D
+
+enum InputMode {KEYBOARD, CONTROLLER}
+
+@export var speed = 400
+@export var acceleration = 8000
+@export var friction = acceleration / speed
+@export var input_mode = InputMode.KEYBOARD
+
+const CONTROLLER_CROSSHAIR_DIST = 100
+
+var aim_point = Vector2(CONTROLLER_CROSSHAIR_DIST, 0)
+var movement_input_vector = Vector2(0, 0)
+var aim_input_vector = Vector2(0, 0)
+
+func handle_input():
+	self.movement_input_vector = Input.get_vector("MoveLeft", "MoveRight", "MoveUp", "MoveDown")
+	self.aim_input_vector = Input.get_vector("AimLeft", "AimRight", "AimUp", "AimDown")
+	
+	# Aim
+	if self.input_mode == InputMode.CONTROLLER and aim_input_vector:
+		self.aim_point = CONTROLLER_CROSSHAIR_DIST * aim_input_vector.normalized()
+	elif self.input_mode == InputMode.KEYBOARD:
+		self.aim_point = get_global_mouse_position() - position
+	$Crosshair.position = self.aim_point
+	
+	# Interact
+	if Input.is_action_just_pressed("Interact"):
+		print("Interact")
+	
+	# Dodge
+	if Input.is_action_just_pressed("Dodge"):
+		print("Dodge")
+	
+		# Attacking
+	if Input.is_action_just_pressed("Attack"):
+		get_node("Weapon").attack(aim_point)
+
+
+func apply_traction(delta):
+	var traction = Input.get_vector("MoveLeft", "MoveRight", "MoveUp", "MoveDown")
+	self.velocity += traction * acceleration * delta
+
+
+func apply_friction(delta):
+	self.velocity -= self.velocity * friction * delta
+
+
+func play_walking_animation():
+	if self.movement_input_vector.x < 0:
+		$PlayerSprite.flip_h = true
+	elif self.movement_input_vector.x > 0:
+		$PlayerSprite.flip_h = false
+
+	if self.movement_input_vector:
+		$AnimationPlayer.play("player_move_down")
+	else:
+		$AnimationPlayer.play("player_idle")
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _physics_process(delta):
+	handle_input()
+	play_walking_animation()
+	apply_traction(delta)
+	apply_friction(delta)
+	move_and_slide()
+
