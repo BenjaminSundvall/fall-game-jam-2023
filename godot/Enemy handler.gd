@@ -9,7 +9,7 @@ func _ready():
 	for spawner in spawners:
 		var coordinate = spawner.get_position()
 		var enemy = enemy_prefab.instantiate()
-		
+
 		enemy.add_to_group("enemies")
 		enemy.position = coordinate
 		

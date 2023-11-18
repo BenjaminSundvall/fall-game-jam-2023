@@ -3,6 +3,7 @@ extends CharacterBody2D
 var player
 var attack
 var speed = 400
+var health = 100
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -20,7 +21,18 @@ func _process(delta):
 		velocity = direction * speed
 		move_and_slide()
 	pass
+
+func _die():
+	#Potential animations etc for dying
+	self.queue_free()
+	pass
 	
 func start_attacking():
 	attack = true
+	pass
+	
+func take_damage(damage):
+	health += damage
+	if health <= 0:
+		self._die()
 	pass
