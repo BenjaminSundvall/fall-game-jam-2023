@@ -2,6 +2,7 @@ extends Area2D
 var damage
 var speed = 20
 var direction
+var friendly
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -18,12 +19,12 @@ func _movement(dir):
 	pass
 
 func _on_body_entered(body):
-	if(body.is_in_group("players")):
-		queue_free()
-		pass
-	elif(body.is_in_group("enemies")):
-		body.take_damage(damage)
-		queue_free()
+	if (friendly in ["players", "enemies"]):
+		if(!body.is_in_group(friendly)):
+			body.take_damage(damage)
+			queue_free()
+		else:
+			pass
 	else:
-		pass
+		queue_free()
 	

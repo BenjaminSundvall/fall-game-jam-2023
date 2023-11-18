@@ -1,18 +1,16 @@
-extends Node2D
-class_name Weapon
+extends Camera2D
 
-@export var bullet_damage:int
-@export var Bullet:PackedScene
-
+var SPEED = 20;
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
-
-func attack(direction):
-	pass
+	var movebool = Input.get_vector("MoveLeft", "MoveRight", "MoveUp", "MoveDown")
+	var velocity = movebool * SPEED
+	position.x += velocity[0]
+	position.y += velocity[1]
+	
+	
