@@ -1,7 +1,5 @@
 extends Node
 
-@export var StartingScene:PackedScene
-
 var Menu 
 var Credits
 
@@ -24,7 +22,7 @@ func _process(delta):
 	pass
 
 func _on_start_up():
-	get_tree().change_scene_to_packed(StartingScene)
+	get_tree().change_scene_to_file("res://Scene/test.tscn")
 	pass
 	
 func _on_credits_up():
