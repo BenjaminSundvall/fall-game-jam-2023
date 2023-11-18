@@ -79,7 +79,4 @@ func _physics_process(delta):
 	play_walking_animation()
 	apply_traction(delta)
 	apply_friction(delta)
-	print("speed:", self.speed)
-	print("input:", self.movement_input_vector)
-	print("vel:", self.velocity.length())
 	move_and_slide()
