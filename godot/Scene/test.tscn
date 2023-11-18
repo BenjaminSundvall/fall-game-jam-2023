@@ -8,9 +8,8 @@
 [node name="Node2D" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_wcg18")]
-input_mode = 1
 
-[node name="Weapon" parent="Player" instance=ExtResource("2_updxs")]
+[node name="Weapon2" parent="Player" instance=ExtResource("2_updxs")]
 
 [node name="Enemy" parent="." instance=ExtResource("3_0okgs")]
 position = Vector2(701, 230)
