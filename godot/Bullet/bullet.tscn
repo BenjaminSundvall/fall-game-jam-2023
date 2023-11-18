@@ -1,11 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://5fvupghx4bnt"]
 
-[ext_resource type="Script" path="res://bullet.gd" id="1_ei6hj"]
+[ext_resource type="Script" path="res://Bullet/bullet.gd" id="1_t1j67"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hnupr"]
 
 [node name="bullet" type="Area2D"]
-script = ExtResource("1_ei6hj")
+script = ExtResource("1_t1j67")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 
