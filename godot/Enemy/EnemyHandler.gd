@@ -3,7 +3,7 @@ extends Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var enemy_prefab = preload('res://enemy.tscn')
+	var enemy_prefab = preload('res://Enemy/Enemy.tscn')
 	var spawners = get_tree().get_nodes_in_group("spawners")
 	
 	for spawner in spawners:
