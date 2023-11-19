@@ -86,3 +86,5 @@ func _physics_process(delta):
 	handle_input()
 	animate()
 	move_and_slide()
+	get_node("Weapon").weapon_vector = aim_point
+	

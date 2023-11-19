@@ -3,6 +3,7 @@ class_name Weapon
 
 @export var bullet_damage:int
 @export var Bullet:PackedScene
+var weapon_vector
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
