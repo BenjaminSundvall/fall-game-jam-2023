@@ -5,6 +5,8 @@ extends Node2D
 
 @export var weapons : Array[PackedScene]
 
+@onready var spawner = $"NetWork ManAnger/ActorSpawner"
+
 const SPAWN_DIST = 200
 
 var players = []
@@ -49,8 +51,8 @@ func _initiate_weapon(i=-1):
 	
 func _initiate_player(name, weapon_i=-1):
 	var player = self.player.instantiate()
-
 	player.name = name
+	
 	get_tree().get_nodes_in_group("Map")[0].add_child(player)	
 	players.append(player)
 
@@ -62,7 +64,6 @@ func _initiate_player(name, weapon_i=-1):
 # Everyone will manage their own change of scene
 @rpc("reliable", "call_local")
 func _switch_to_scene():
-	
 	var top_scene = $Scene
 	
 	var menu = top_scene.get_node("Control")
@@ -70,5 +71,7 @@ func _switch_to_scene():
 	menu.queue_free()
 	
 	var real_scene = scene.instantiate()
-	add_child(real_scene)
+	top_scene.add_child(real_scene)
+	
+	spawner.spawn_path = get_tree().get_nodes_in_group("Map")[0].get_path()
 

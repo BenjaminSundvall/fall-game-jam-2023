@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://by7ujwm60uric"]
+[gd_scene load_steps=4 format=3 uid="uid://dwsh5ok8k4lfe"]
 
 [ext_resource type="Script" path="res://Weapon/CroissantBoomerang.gd" id="1_mqkgt"]
 [ext_resource type="PackedScene" uid="uid://t8fkxcchr0he" path="res://Bullet/BoomerangBullet.tscn" id="2_qe65i"]

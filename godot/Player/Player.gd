@@ -23,13 +23,17 @@ func load(id, where, name, nameplate):
 	position = where
 
 	networked_data.sync_crosshair_postion = Vector2.ZERO
-	$Crosshair.position = Vector2.ZERO
+	var crosshair = $Crosshair
+	crosshair.position = Vector2.ZERO
 
 	networked_data.sync_client_id = id
 	player_client_id = id
 	set_multiplayer_authority(id)
 	if id == multiplayer.get_unique_id():
 		$Camera.make_current()
+		crosshair.visible = true
+	else:
+		crosshair.visible = false
 
 #	self.name = "Player " + name 
 	$Label.visible = nameplate
@@ -65,6 +69,7 @@ func physics_update():
 			var viewport = get_viewport()
 			var mouse_pos = 2 * (viewport.get_mouse_position() / viewport.get_visible_rect().size - Vector2(0.5, 0.5))
 			$Camera.position = CAMERA_LOOKAHEAD * mouse_pos
+			
 	else:
 		self.velocity = Vector2(0,0)
 	
@@ -127,6 +132,7 @@ func _sync_add_weapon(weapon_scene_filename):
 		prev_weapon.queue_free()
 
 	weapon.weapon_vector = Vector2.UP
+	weapon.set_multiplayer_authority(multiplayer.get_remote_sender_id())
 	
 	add_child(weapon)
 
@@ -139,7 +145,7 @@ func _sync_add_weapon(weapon_scene_filename):
 func _on_pressed_attack():
 	if player_client_id == multiplayer.get_unique_id():
 	#print_debug("Attack")
-		get_node("Weapon").attack(input.aim_point)
+		get_node("Weapon").attack.rpc(input.aim_point)
 
 func _on_pressed_dodge():
 	#print_debug("Dodge")

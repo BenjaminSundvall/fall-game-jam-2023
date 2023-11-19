@@ -32,7 +32,7 @@ func start_server():
 	var my_id = multiplayer.get_unique_id()
 	
 	connected_players[my_id] = player_name
-	player_connect.emit(my_id)
+	player_connect.emit(my_id, player_name)
 
 
 # =============================================== 
@@ -48,7 +48,7 @@ func start_client(ip_address=DEFAULT_ADDRESS):
 		print_debug(error)
 		return error
 	multiplayer.multiplayer_peer = peer
-	player_connect.emit(multiplayer.get_unique_id())
+
 
 # -- Client - Events ----------------------------
 		

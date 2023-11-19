@@ -4,10 +4,10 @@
 [ext_resource type="PackedScene" uid="uid://dsoega50hhiwr" path="res://Scene/Scene1.tscn" id="2_6niem"]
 [ext_resource type="PackedScene" uid="uid://bgiutsx34ru58" path="res://GUI/Menu.tscn" id="2_een8q"]
 [ext_resource type="Script" path="res://Network/NetworkManager.gd" id="3_s1nwt"]
-[ext_resource type="PackedScene" path="res://Weapon/CroissantBoomerang.tscn" id="4_4odep"]
+[ext_resource type="PackedScene" uid="uid://dwsh5ok8k4lfe" path="res://Weapon/CroissantBoomerang.tscn" id="4_4odep"]
 [ext_resource type="PackedScene" uid="uid://r0sypiaqn3rn" path="res://Player/Player.tscn" id="5_lyjst"]
 [ext_resource type="PackedScene" uid="uid://d0ldmvppqglhc" path="res://Weapon/Pistol.tscn" id="5_moxda"]
-[ext_resource type="PackedScene" path="res://Weapon/Shotgun.tscn" id="6_wnvtl"]
+[ext_resource type="PackedScene" uid="uid://cx44q62j3mrq1" path="res://Weapon/Shotgun.tscn" id="6_wnvtl"]
 [ext_resource type="PackedScene" uid="uid://de62soql8i2c6" path="res://Weapon/Sword.tscn" id="7_pk7sk"]
 [ext_resource type="PackedScene" uid="uid://csa520uhaogpn" path="res://Weapon/FlourBag.tscn" id="8_4xd17"]
 
@@ -20,8 +20,8 @@ weapons = Array[PackedScene]([ExtResource("4_4odep"), ExtResource("5_moxda"), Ex
 [node name="NetWork ManAnger" type="Node" parent="."]
 script = ExtResource("3_s1nwt")
 
-[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="NetWork ManAnger"]
-_spawnable_scenes = PackedStringArray("res://Player/Player.tscn", "res://Weapon/Weapon.tscn", "res://Weapon/Sword.tscn", "res://Weapon/Shotgun.tscn", "res://Weapon/Pistol.tscn", "res://Weapon/CroissantBoomerang.tscn", "res://Bullet/Bullet.tscn", "res://Bullet/Grenade.tscn", "res://Bullet/BoomerangBullet.tscn", "res://Bullet/PistolBullet.tscn", "res://Bullet/ShotgunBullet.tscn")
+[node name="ActorSpawner" type="MultiplayerSpawner" parent="NetWork ManAnger"]
+_spawnable_scenes = PackedStringArray("res://Player/Player.tscn", "res://Bullet/Bullet.tscn", "res://Enemy/Enemy.tscn", "res://Bullet/BoomerangBullet.tscn", "res://Bullet/Grenade.tscn", "res://Bullet/PistolBullet.tscn", "res://Bullet/ShotgunBullet.tscn", "res://Bullet/BoomerangBullet.tscn", "res://Bullet/Bullet.tscn", "res://Bullet/Grenade.tscn", "res://Bullet/PistolBullet.tscn", "res://Bullet/ShotgunBullet.tscn")
 spawn_path = NodePath("../../Scene")
 
 [node name="Scene" type="Node2D" parent="."]

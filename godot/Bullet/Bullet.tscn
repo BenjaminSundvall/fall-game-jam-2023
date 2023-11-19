@@ -1,16 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://5fvupghx4bnt"]
+[gd_scene load_steps=6 format=3 uid="uid://5fvupghx4bnt"]
 
 [ext_resource type="Script" path="res://Bullet/Bullet.gd" id="1_v7vio"]
 [ext_resource type="Texture2D" uid="uid://dcldqnat1m2vi" path="res://icon.svg" id="2_hifu5"]
+[ext_resource type="Script" path="res://Network/BulletData.gd" id="3_plqcj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hnupr"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_2ovlt"]
-properties/0/path = NodePath(".:rotation")
+properties/0/path = NodePath("BulletData:sync_position")
 properties/0/spawn = true
 properties/0/sync = true
 properties/0/watch = false
-properties/1/path = NodePath(".:position")
+properties/1/path = NodePath("BulletData:sync_direction")
 properties/1/spawn = true
 properties/1/sync = true
 properties/1/watch = false
@@ -26,3 +27,6 @@ shape = SubResource("CircleShape2D_hnupr")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_2ovlt")
+
+[node name="BulletData" type="Node" parent="."]
+script = ExtResource("3_plqcj")

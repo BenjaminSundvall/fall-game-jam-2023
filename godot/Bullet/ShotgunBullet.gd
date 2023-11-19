@@ -7,7 +7,7 @@ func _ready():
 	pass # Replace with function body.
 
 
-func _process(delta):
+func _update_physics(delta):
 	_movement(direction)
 	lifetime += delta
 	if(lifetime >= max_lifetime):

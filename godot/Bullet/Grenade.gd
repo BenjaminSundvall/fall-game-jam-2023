@@ -16,11 +16,11 @@ func _ready():
 	time = distance/speed
 	connect("body_entered", _on_body_entered)
 	connect("body_exited", _on_body_exited)
-	pass # Replace with function body.
+
 
 #height*(x-start_pos)(x-(start_pos+dir*distance))
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _update_physics(delta):
 	if elapsed_time == 0:
 		get_node("AnimatedSprite2D").play("default")
 		if direction.x < 0:

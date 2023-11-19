@@ -7,15 +7,13 @@ func _ready():
 	lifetime = 0
 	speed = 10
 
-
-func _process(delta):
+func _update_physics(delta):
 	_movement(direction)
 	lifetime += delta
 
 func _movement(dir):
 	position += dir * speed
 	#rotation = dir.angle()
-
 
 func _on_body_entered(body):
 	if(body.is_in_group(enemy)):

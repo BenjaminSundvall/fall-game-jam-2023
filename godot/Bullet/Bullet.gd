@@ -7,15 +7,22 @@ var enemy
 var max_lifetime
 var lifetime
 
-
+@onready var sync_data = $BulletData
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	set_multiplayer_authority(1)
 	connect("body_entered", _on_body_entered)
-	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if multiplayer.get_unique_id() == get_multiplayer_authority():
+		_update_physics(delta)
+	else:
+		position = sync_data.sync_position
+		rotation = sync_data.sync_rotation
+	
+func _update_physics(delta):
 	pass
 
 func _movement(dir):

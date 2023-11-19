@@ -5,16 +5,12 @@ extends Bullet
 func _ready():
 	connect("body_entered", _on_body_entered)
 	speed = 20
-	pass # Replace with function body.
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _update_physics(delta):
 	_movement(direction)
-	pass
 
 func _movement(dir):
 	position += dir * speed
-	pass
 
 func _on_body_entered(body):
 	if (enemy == ""):
