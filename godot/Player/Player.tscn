@@ -112,7 +112,7 @@ animation = &"player_idle"
 frame_progress = 0.345434
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 7)
+position = Vector2(-4.7, 36)
 scale = Vector2(0.4, 0.4)
 shape = ExtResource("2_251kr")
 
