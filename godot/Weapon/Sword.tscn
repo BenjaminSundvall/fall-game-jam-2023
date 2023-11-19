@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://de62soql8i2c6"]
+[gd_scene load_steps=6 format=3 uid="uid://de62soql8i2c6"]
 
 [ext_resource type="Script" path="res://Weapon/Sword.gd" id="1_1obu3"]
 [ext_resource type="Texture2D" uid="uid://dkfgjuk8r8xvx" path="res://Weapon/Weapon assets/baguette.png" id="2_kycmb"]
@@ -35,6 +35,12 @@ _data = {
 "attackAnimation": SubResource("Animation_nlfih")
 }
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_o3ggs"]
+properties/0/path = NodePath("AnimationPlayer:current_animation")
+properties/0/spawn = true
+properties/0/sync = true
+properties/0/watch = false
+
 [node name="Weapon" type="Node2D"]
 script = ExtResource("1_1obu3")
 
@@ -54,3 +60,6 @@ texture = ExtResource("2_kycmb")
 libraries = {
 "": SubResource("AnimationLibrary_nnfj3")
 }
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_o3ggs")
