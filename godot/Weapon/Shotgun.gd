@@ -9,8 +9,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	rotation = weapon_vector.rotated(PI/2).angle()
-	pass
+	if weapon_vector:
+		rotation = weapon_vector.rotated(PI/2).angle()
 
 var bullet_speed = 30
 var pellets = 5

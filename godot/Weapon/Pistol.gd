@@ -6,7 +6,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if weapon_vector:
+		rotation = weapon_vector.rotated(PI/2).angle()
 
 func attack(direction):
 	var enemy = _get_enemy()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bxdy4ht0dcdbw"]
+[gd_scene load_steps=11 format=3 uid="uid://bxdy4ht0dcdbw"]
 
 [ext_resource type="Script" path="res://Scene/MainEngine.gd" id="1_84ill"]
 [ext_resource type="PackedScene" uid="uid://dsoega50hhiwr" path="res://Scene/Scene1.tscn" id="2_6niem"]
@@ -9,18 +9,19 @@
 [ext_resource type="PackedScene" uid="uid://d0ldmvppqglhc" path="res://Weapon/Pistol.tscn" id="5_moxda"]
 [ext_resource type="PackedScene" uid="uid://dbjf3mj0tcf7w" path="res://Weapon/Shotgun.tscn" id="6_wnvtl"]
 [ext_resource type="PackedScene" uid="uid://de62soql8i2c6" path="res://Weapon/Sword.tscn" id="7_pk7sk"]
+[ext_resource type="PackedScene" uid="uid://chid5gb1iktad" path="res://Weapon/FlourBag.tscn" id="8_4xd17"]
 
 [node name="MainScene" type="Node2D"]
 script = ExtResource("1_84ill")
 scene = ExtResource("2_6niem")
 player = ExtResource("5_lyjst")
-weapons = Array[PackedScene]([ExtResource("4_4odep"), ExtResource("5_moxda"), ExtResource("6_wnvtl"), ExtResource("7_pk7sk")])
+weapons = Array[PackedScene]([ExtResource("4_4odep"), ExtResource("5_moxda"), ExtResource("6_wnvtl"), ExtResource("7_pk7sk"), ExtResource("8_4xd17")])
 
 [node name="NetWork ManAnger" type="Node" parent="."]
 script = ExtResource("3_s1nwt")
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="NetWork ManAnger"]
-_spawnable_scenes = PackedStringArray("res://Player/Player.tscn", "res://Weapon/Weapon.tscn", "res://Weapon/Sword.tscn", "res://Weapon/Shotgun.tscn", "res://Weapon/Pistol.tscn", "res://Weapon/CroissantBoomerang.tscn")
+_spawnable_scenes = PackedStringArray("res://Player/Player.tscn", "res://Weapon/Weapon.tscn", "res://Weapon/Sword.tscn", "res://Weapon/Shotgun.tscn", "res://Weapon/Pistol.tscn", "res://Weapon/CroissantBoomerang.tscn", "res://Bullet/Bullet.tscn", "res://Bullet/Grenade.tscn", "res://Bullet/BoomerangBullet.tscn", "res://Bullet/PistolBullet.tscn", "res://Bullet/ShotgunBullet.tscn")
 spawn_path = NodePath("../../Scene")
 
 [node name="Scene" type="Node2D" parent="."]

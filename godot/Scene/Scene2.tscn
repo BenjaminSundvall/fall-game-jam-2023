@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bq5wgi3txe14d"]
+
+[ext_resource type="PackedScene" path="res://Tilemap/BakeryTileMap.tscn" id="1_ujkpl"]
+
+[node name="Scene2" type="Node2D"]
+
+[node name="TileMap" parent="." instance=ExtResource("1_ujkpl")]

@@ -10,6 +10,8 @@ var paused
 @onready var input = $"Input Handler"
 @onready var networked_data = $NetworkData
 
+const CAMERA_LOOKAHEAD = 360
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	self.paused = false
@@ -40,30 +42,38 @@ func set_id(id):
 
 
 func physics_update():	
-	if player_client_id == multiplayer.get_unique_id():
-		if !self.paused:
-			# Movement
-			self.velocity = self.speed * input.walk_direction
-			# Aim
-			$Crosshair.position = input.aim_point
-			$Camera.position = input.aim_point
-			var weapon = $Weapon 
-			if weapon:
-				weapon.weapon_vector = input.aim_point
-		else:
-			self.velocity = Vector2(0,0)
-		
-		move_and_slide()
-		
-		networked_data.sync_position = position
-		networked_data.sync_crosshair_postion = $Crosshair.position
-		
-		animate()
-		
-	else:
+	if player_client_id != multiplayer.get_unique_id():
 		self.position = networked_data.sync_position
 		$Crosshair.position = networked_data.sync_crosshair_postion
 		$Weapon.weapon_vector = networked_data.sync_crosshair_postion
+		return
+	
+	if !self.paused:
+		# Movement
+		self.velocity = self.speed * input.walk_direction
+		
+		# Aim
+		$Crosshair.position = input.aim_point
+		var weapon = $Weapon 
+		if weapon:
+			weapon.weapon_vector = input.aim_point
+			
+		# Set camera position
+		if input.input_mode == input.InputMode.CONTROLLER:
+			$Camera.position = 0.7 * CAMERA_LOOKAHEAD * input.aim_point.normalized()
+		elif input.input_mode == input.InputMode.KEYBOARD:
+			var viewport = get_viewport()
+			var mouse_pos = 2 * (viewport.get_mouse_position() / viewport.get_visible_rect().size - Vector2(0.5, 0.5))
+			$Camera.position = CAMERA_LOOKAHEAD * mouse_pos
+	else:
+		self.velocity = Vector2(0,0)
+	
+	move_and_slide()
+	
+	networked_data.sync_position = position
+	networked_data.sync_crosshair_postion = $Crosshair.position
+	
+	animate()
 
 
 func take_damage(damage):
@@ -74,13 +84,16 @@ func take_damage(damage):
 func animate():
 	$PlayerSprite.flip_h = input.walk_direction.x < 0
 	
-	if $Weapon and $Weapon/Sprite:
-		if input.aim_point.x < 0:
-			$Weapon/Sprite.flip_h = true
-			$Weapon/Sprite.position = Vector2(40, 0)
-		elif input.aim_point.x > 0:
-			$Weapon/Sprite.flip_h = false
-			$Weapon/Sprite.position = Vector2(-40, 0)
+	var weapon = $Weapon
+	if weapon:
+		var weapon_sprite = weapon.get_node_or_null("Sprite")	
+		if weapon_sprite:
+			if input.aim_point.x < 0:
+				weapon_sprite.flip_h = true
+				weapon_sprite.position = Vector2(40, 0)
+			elif input.aim_point.x > 0:
+				weapon_sprite.flip_h = false
+				weapon_sprite.position = Vector2(-40, 0)
 
 	if input.walk_direction:
 		$PlayerSprite.play("player_move")
