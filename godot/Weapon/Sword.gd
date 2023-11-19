@@ -13,15 +13,17 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	rotation = weapon_vector.rotated(PI/2).angle()
 	pass
 	
 func attack(direction):
+	animate()
+	for i in range(dangerZone.size()):
+		dangerZone[i].take_damage(40)
+
+func animate():
 	$AnimationPlayer.seek(1)
 	$AnimationPlayer.play("attackAnimation")
-	for i in range(dangerZone.size()):
-		print("alalal")
-		dangerZone[i].take_damage(40)
-	
 
 func _on_body_entered(body):
 	if(body.is_in_group(enemy)):

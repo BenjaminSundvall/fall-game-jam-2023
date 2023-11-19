@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://yr3vsaptx6so"]
+[gd_scene load_steps=2 format=3 uid="uid://dsoega50hhiwr"]
 
 [ext_resource type="PackedScene" uid="uid://xsyng2vvhkvc" path="res://Tilemap/BakeryTileMap.tscn" id="1_tuqod"]
-[ext_resource type="PackedScene" uid="uid://r0sypiaqn3rn" path="res://Player/Player.tscn" id="2_vwsj7"]
 
 [node name="Scene1" type="Node2D"]
 
@@ -26,7 +25,3 @@ layer_3/y_sort_enabled = true
 layer_3/y_sort_origin = 60
 layer_3/z_index = 0
 layer_3/tile_data = PackedInt32Array(-131078, 1769473, 5, 196604, 1114113, 5, -131075, 851969, 1, 327677, 851969, 3, -196608, 983041, 5, 196612, 851969, 5, -196603, 1441793, 5, 327696, 851969, 3, 327698, 851969, 5)
-
-[node name="CharacterBody2D" parent="TileMap" instance=ExtResource("2_vwsj7")]
-y_sort_enabled = true
-position = Vector2(67, 141)

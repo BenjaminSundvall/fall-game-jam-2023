@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://de62soql8i2c6"]
+[gd_scene load_steps=6 format=3 uid="uid://de62soql8i2c6"]
 
 [ext_resource type="Script" path="res://Weapon/Sword.gd" id="1_1obu3"]
-[ext_resource type="Texture2D" uid="uid://bdyt3bmapb24m" path="res://LeBaguette.png" id="2_7wvsx"]
+[ext_resource type="Texture2D" uid="uid://dkfgjuk8r8xvx" path="res://Weapon/Weapon assets/baguette.png" id="2_kycmb"]
 
 [sub_resource type="Animation" id="Animation_nlfih"]
 resource_name = "attackAnimation"
@@ -15,7 +15,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.3, 0.7, 1),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [2.1293, 2.44346, 1.74533, 2.1293]
+"values": [0.0, 0.698132, -0.698132, 0.0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -24,16 +24,22 @@ tracks/1/path = NodePath("Sprite2D2:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = false
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.7, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.3, 0.5, 0.7, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(-10, -250), Vector2(40, -260), Vector2(-40, -260), Vector2(-10, -250)]
+"values": [Vector2(0, -235), Vector2(130, -220), Vector2(0, -235), Vector2(-130, -220), Vector2(0, -235)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nnfj3"]
 _data = {
 "attackAnimation": SubResource("Animation_nlfih")
 }
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_o3ggs"]
+properties/0/path = NodePath("AnimationPlayer:current_animation")
+properties/0/spawn = true
+properties/0/sync = true
+properties/0/watch = false
 
 [node name="Weapon" type="Node2D"]
 script = ExtResource("1_1obu3")
@@ -46,12 +52,14 @@ scale = Vector2(2, 2)
 polygon = PackedVector2Array(0, -1, -25.9612, -31.8289, -64, -78, -41, -99, -19, -112, 0, -121, 31, -109, 49, -94, 70, -76)
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
-position = Vector2(-10, -250)
-rotation = 2.1293
-scale = Vector2(2, 2)
-texture = ExtResource("2_7wvsx")
+position = Vector2(0, -235)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_kycmb")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_nnfj3")
 }
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_o3ggs")
