@@ -5,20 +5,17 @@ var player_who_shot
 func _ready():
 	connect("body_entered", _on_body_entered)
 	lifetime = 0
-	pass # Replace with function body.
+	speed = 10
 
 
 func _process(delta):
 	_movement(direction)
 	lifetime += delta
-	if(lifetime >= max_lifetime):
-		pass
-	pass
 
 func _movement(dir):
 	position += dir * speed
-	rotation = dir.angle()
-	pass
+	#rotation = dir.angle()
+
 
 func _on_body_entered(body):
 	if(body.is_in_group(enemy)):
