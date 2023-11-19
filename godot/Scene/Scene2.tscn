@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://bq5wgi3txe14d"]
+[gd_scene load_steps=2 format=3 uid="uid://bjbvvjx8wiigb"]
 
 [ext_resource type="PackedScene" path="res://Tilemap/BakeryTileMap.tscn" id="1_ujkpl"]
 
