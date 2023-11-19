@@ -1,5 +1,5 @@
 extends Weapon
-var charge_duration = .7
+var charge_duration = .8
 var start_time = 0
 var distance = 500
 var charged_distance = 0
@@ -7,6 +7,7 @@ var display_charge = false
 var dir
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$Sprite2D.visible = false
 	bullet_damage = 50
 	
 	pass # Replace with function body.
@@ -17,9 +18,12 @@ func _process(delta):
 	
 	if !display_charge:
 		return
+	
 	start_time += delta	
 	charged_distance = distance*(start_time/charge_duration)
-	
+	dir = get_parent().input.aim_point.normalized()
+	$Sprite2D.position = dir*charged_distance
+		
 	if charged_distance > distance:
 		_attack(dir)
 	
@@ -28,6 +32,7 @@ func _process(delta):
 func attack_pressed(direction):
 	dir = direction
 	display_charge = true
+	$Sprite2D.visible = true
 	start_time = 0
 	charged_distance = 0
 
@@ -37,6 +42,7 @@ func attack_released(direction):
 	
 func _attack(direction):
 	display_charge = false
+	$Sprite2D.visible = false
 	var enemy = _get_enemy()
 	var bullet = Bullet.instantiate()
 	get_node("/root").add_child(bullet)
