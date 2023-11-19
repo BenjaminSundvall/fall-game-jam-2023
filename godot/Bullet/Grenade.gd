@@ -7,28 +7,54 @@ var elapsed_time = 0
 var progress = 0
 var start_pos
 
+var exploded = false
+var enemies = []
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	speed = 300
 	time = distance/speed
+	connect("body_entered", _on_body_entered)
+	connect("body_exited", _on_body_exited)
 	pass # Replace with function body.
 
 #height*(x-start_pos)(x-(start_pos+dir*distance))
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if elapsed_time == 0:
+		get_node("AnimatedSprite2D").play("default")
+		if direction.x < 0:
+			get_node("AnimatedSprite2D").flip_h = true
+			
 		start_pos = self.global_position
 		
 	elapsed_time += delta
 	progress = elapsed_time/time
+	
+	if progress >= 1:
+		if !exploded:
+			_deal_damage()	
+		
+		exploded = true
+		if progress >= 1.5:
+			queue_free()
+		return
+		
 	var height = _travel_height()
 	var dir = _travel_dir()
 	global_position = start_pos + height + dir 
 	
-	if progress >= 1:
-		queue_free()
+func _deal_damage():
+	for hostile in enemies:
+		hostile.take_damage(damage)
 	
-	pass
+func _on_body_entered(body):
+	if body.is_in_group(enemy):
+		enemies.append(body)
+
+func _on_body_exited(body):
+	if body.is_in_group(enemy):
+		enemies.erase(body)
 	
 func _travel_height():
 	var x = progress*distance*direction.x

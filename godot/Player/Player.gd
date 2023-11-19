@@ -51,6 +51,7 @@ func handle_input():
 	# Attacking
 	if Input.is_action_just_pressed("Attack"):
 		print("Attack")
+		print(aim_point)
 		get_node("Weapon").attack(aim_point)
 		
 
@@ -61,9 +62,18 @@ func take_damage(damage):
 
 func animate():
 	if self.movement_input_vector.x < 0:
+		print("looking left")
 		$PlayerSprite.flip_h = true
 	elif self.movement_input_vector.x > 0:
+		print("looking right")
 		$PlayerSprite.flip_h = false
+		
+	if self.aim_point.x < 0:
+		$Weapon/Sprite.flip_h = true
+		$Weapon/Sprite.position = Vector2(40, 0)
+	elif self.aim_point.x > 0:
+		$Weapon/Sprite.flip_h = false
+		$Weapon/Sprite.position = Vector2(-40, 0)
 
 	if self.movement_input_vector:
 		$PlayerSprite.play("player_move")

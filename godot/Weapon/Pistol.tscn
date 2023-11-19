@@ -7,5 +7,3 @@
 script = ExtResource("1_0andh")
 bullet_damage = 20
 Bullet = ExtResource("2_xyq85")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
