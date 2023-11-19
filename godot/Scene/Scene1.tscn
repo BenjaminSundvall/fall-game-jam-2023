@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://dsoega50hhiwr"]
+[gd_scene load_steps=4 format=3 uid="uid://dsoega50hhiwr"]
 
-[ext_resource type="PackedScene" uid="uid://xsyng2vvhkvc" path="res://Tilemap/BakeryTilemap.tscn" id="1_tuqod"]
+[ext_resource type="PackedScene" uid="uid://xsyng2vvhkvc" path="res://Tilemap/BakeryTileMap.tscn" id="1_tuqod"]
+[ext_resource type="PackedScene" uid="uid://djqcpmmybus6q" path="res://Enemy/EnemyHandler.tscn" id="2_q3af5"]
+[ext_resource type="PackedScene" uid="uid://dtbh6a6swpwbe" path="res://Enemy/spawner.tscn" id="3_eh8ul"]
 
 [node name="Scene1" type="Node2D"]
 
@@ -25,3 +27,17 @@ layer_3/y_sort_enabled = true
 layer_3/y_sort_origin = 60
 layer_3/z_index = 0
 layer_3/tile_data = PackedInt32Array(-131078, 1769473, 5, 196604, 1114113, 5, -131075, 851969, 1, 327677, 851969, 3, -196608, 983041, 5, 196612, 851969, 5, -196603, 1441793, 5, 327696, 851969, 3, 327698, 851969, 5)
+
+[node name="EnemyHandler" parent="TileMap" instance=ExtResource("2_q3af5")]
+
+[node name="spawner1" parent="TileMap" instance=ExtResource("3_eh8ul")]
+position = Vector2(1565, 176)
+
+[node name="spawner2" parent="TileMap" instance=ExtResource("3_eh8ul")]
+position = Vector2(-2, -890)
+
+[node name="spawner3" parent="TileMap" instance=ExtResource("3_eh8ul")]
+position = Vector2(-651, 1335)
+
+[node name="spawner4" parent="TileMap" instance=ExtResource("3_eh8ul")]
+position = Vector2(1625, 1314)
