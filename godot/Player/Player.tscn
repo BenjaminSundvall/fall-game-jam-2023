@@ -104,7 +104,6 @@ properties/5/watch = false
 
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["players"]]
 script = ExtResource("1_304ua")
-input_mode = 1
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.12, 0.12)
