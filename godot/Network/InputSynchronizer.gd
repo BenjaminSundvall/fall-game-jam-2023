@@ -19,6 +19,7 @@ enum InputMode {KEYBOARD, CONTROLLER}
 signal pressed_interact
 signal pressed_dodge
 signal pressed_attack
+signal released_attack
 
 func _ready():
 	player = $".."
@@ -44,5 +45,9 @@ func _input(event):
 
 	if Input.is_action_just_pressed("Attack"):
 		pressed_attack.emit()
+
+	if Input.is_action_just_released("Attack"):
+		released_attack.emit()
+
 
 

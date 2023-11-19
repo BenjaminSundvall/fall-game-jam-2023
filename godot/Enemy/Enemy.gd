@@ -29,13 +29,14 @@ func _process(delta):
 		return
 		
 	if players.size() == 0:
+		self.attack = false
 		return
 	
 	var closest_player = players[0]
 	var shortest_dist = players[0].global_position - global_position 
 	for player in players:
 		var dist = player.global_position-global_position
-		if dist < shortest_dist:
+		if (dist < shortest_dist)&&(player.alive):
 			shortest_dist = dist
 			closest_player = player
 	
@@ -50,7 +51,7 @@ func _walking(to_where):
 
 func _attack(to_where):
 	var direction = (to_where-position).normalized()
-	weapon.attack(direction)
+	weapon.attack_pressed(direction)
 	weapon.weapon_vector = direction
 
 func _die():

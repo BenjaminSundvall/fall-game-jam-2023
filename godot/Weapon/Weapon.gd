@@ -15,8 +15,15 @@ func _ready():
 func _process(delta):
 	pass
 
-func attack(direction):
+func _attack(direction):
 	pass
+
+func attack_pressed(direction):
+	pass
+
+func attack_released(direction):
+	pass
+
 	
 func _get_enemy():
 	if get_parent().is_in_group("players"):

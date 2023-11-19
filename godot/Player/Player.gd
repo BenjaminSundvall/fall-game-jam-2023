@@ -152,7 +152,13 @@ func _sync_add_weapon(weapon_scene_filename):
 func _on_pressed_attack():
 	if player_client_id == multiplayer.get_unique_id():
 	#print_debug("Attack")
-		get_node("Weapon").attack(input.aim_point)
+		get_node("Weapon").attack_pressed(input.aim_point)
+
+func _on_released_attack():
+	if player_client_id == multiplayer.get_unique_id():
+		get_node("Weapon").attack_released(input.aim_point)
+	pass # Replace with function body.
+
 
 func _on_pressed_dodge():
 	#print_debug("Dodge")
