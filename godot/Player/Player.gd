@@ -47,7 +47,9 @@ func physics_update():
 			# Aim
 			$Crosshair.position = input.aim_point
 			$Camera.position = input.aim_point
-			$Weapon.weapon_vector = input.aim_point
+			var weapon = $Weapon 
+			if weapon:
+				weapon.weapon_vector = input.aim_point
 		else:
 			self.velocity = Vector2(0,0)
 		
