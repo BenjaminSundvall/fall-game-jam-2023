@@ -21,7 +21,7 @@ func _process(delta):
 func start_offline_game():
 	#print_debug("Offline?! You don't have friends?")
 	_switch_to_scene.rpc()
-	var player = _initiate_player("Player", 1)
+	var player = _initiate_player("Player", 0)
 	player.load(1, Vector2.ZERO, "Player", false)
 	
 func start_online_game():

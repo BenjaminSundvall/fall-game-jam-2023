@@ -7,7 +7,7 @@ var min_lifetime = 0.4
 var current_dir
 var parent
 var boolet
-var boomerang_speed = 50
+var boomerang_speed = 30
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	bullet_damage = 50
