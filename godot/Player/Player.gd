@@ -1,7 +1,9 @@
 extends CharacterBody2D
 
+const MAX_HEALTH = 100
+
 @export var player_client_id := 1
-@export var health = 100
+@export var health = MAX_HEALTH
 @export var speed = 800
 
 
@@ -108,12 +110,13 @@ func _die():
 	self.visible = false
 	self.paused = true
 	$CollisionShape2D.disabled = true
-	self.position = Vector2(0, 0)
+	#self.position = Vector2(0, 0)
 
 func _respawn():
 	self.alive = true
 	self.visible = true
 	self.paused = false
+	self.health = MAX_HEALTH
 	$CollisionShape2D.disabled = false
 	self.position = Vector2(0, 0)
 
