@@ -1,15 +1,15 @@
-[gd_scene load_steps=11 format=3 uid="uid://b8bln522p45l3"]
+[gd_scene load_steps=11 format=3 uid="uid://bxdy4ht0dcdbw"]
 
 [ext_resource type="Script" path="res://Scene/MainEngine.gd" id="1_84ill"]
 [ext_resource type="PackedScene" uid="uid://dsoega50hhiwr" path="res://Scene/Scene1.tscn" id="2_6niem"]
 [ext_resource type="PackedScene" uid="uid://bgiutsx34ru58" path="res://GUI/Menu.tscn" id="2_een8q"]
 [ext_resource type="Script" path="res://Network/NetworkManager.gd" id="3_s1nwt"]
-[ext_resource type="PackedScene" path="res://Weapon/CroissantBoomerang.tscn" id="4_4odep"]
+[ext_resource type="PackedScene" uid="uid://by7ujwm60uric" path="res://Weapon/CroissantBoomerang.tscn" id="4_4odep"]
 [ext_resource type="PackedScene" uid="uid://r0sypiaqn3rn" path="res://Player/Player.tscn" id="5_lyjst"]
 [ext_resource type="PackedScene" uid="uid://d0ldmvppqglhc" path="res://Weapon/Pistol.tscn" id="5_moxda"]
-[ext_resource type="PackedScene" path="res://Weapon/Shotgun.tscn" id="6_wnvtl"]
+[ext_resource type="PackedScene" uid="uid://dbjf3mj0tcf7w" path="res://Weapon/Shotgun.tscn" id="6_wnvtl"]
 [ext_resource type="PackedScene" uid="uid://de62soql8i2c6" path="res://Weapon/Sword.tscn" id="7_pk7sk"]
-[ext_resource type="PackedScene" uid="uid://csa520uhaogpn" path="res://Weapon/FlourBag.tscn" id="8_4xd17"]
+[ext_resource type="PackedScene" uid="uid://chid5gb1iktad" path="res://Weapon/FlourBag.tscn" id="8_4xd17"]
 
 [node name="MainScene" type="Node2D"]
 script = ExtResource("1_84ill")
