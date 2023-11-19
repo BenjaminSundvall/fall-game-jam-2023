@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="fgj2023"
-run/main_scene="res://Scene/test.tscn"
+run/main_scene="res://Scene/Scene1.tscn"
 config/features=PackedStringArray("4.1", "Mobile")
 config/icon="res://icon.svg"
 
@@ -89,3 +89,4 @@ ToggleMenu={
 [rendering]
 
 renderer/rendering_method="mobile"
+environment/defaults/default_clear_color=Color(0.258824, 0.239216, 0.219608, 1)
