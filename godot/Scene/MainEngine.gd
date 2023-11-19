@@ -3,6 +3,8 @@ extends Node2D
 @export var scene : PackedScene
 @export var player : PackedScene
 
+@export var weapons : Array[PackedScene]
+
 const SPAWN_DIST = 200
 
 var players = []
@@ -11,7 +13,6 @@ var players = []
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	set_multiplayer_authority(multiplayer.get_unique_id())
-	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -36,11 +37,24 @@ func start_online_game():
 		some_pos = some_pos.rotated(2*PI/len(players_to_initiate))
 		player.load.rpc(player_id, some_pos, player_name, true)	
 		
-func _initiate_player(name):
+func _initiate_weapon(i=-1):
+	var weapon_to_initiate
+	if 0 < i and i < len(weapons):
+		weapon_to_initiate = 0
+	else:
+		weapon_to_initiate = randi() % len(weapons)
+	
+	return weapons[weapon_to_initiate]
+	
+func _initiate_player(name, weapon_i=-1):
 	var player = self.player.instantiate()
+
 	player.name = name
 	$Scene.add_child(player)
 	players.append(player)
+
+	player.add_weapon(_initiate_weapon(weapon_i))
+	
 	return player
 
 	

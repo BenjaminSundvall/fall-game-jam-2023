@@ -51,24 +51,23 @@ func physics_update():
 			self.velocity = Vector2(0,0)
 		
 		move_and_slide()
-
+		
 		networked_data.sync_position = position
 		networked_data.sync_crosshair_postion = $Crosshair.position
 
 		# Set camera position
 		if input.aim_point.length() > input.CONTROLLER_CROSSHAIR_DIST:
-			$Camera.position = input.CONTROLLER_CROSSHAIR_DIST * self.aim_point.normalized()
+			$Camera.position = input.CONTROLLER_CROSSHAIR_DIST * input.aim_point.normalized()
 		else:
 			#$Camera.position = Vector2(0, 0)
 			$Camera.position = input.aim_point
-
+		
 		animate()
 		
 	else:
 		self.position = networked_data.sync_position
 		$Crosshair.position = networked_data.sync_crosshair_postion
 	
-
 
 func take_damage(damage):
 	health -= damage
@@ -83,16 +82,39 @@ func animate():
 	else:
 		$PlayerSprite.play("player_idle")
 
-
 func _die():
 	#code for dying
 	queue_free()
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	physics_update()
 
+# ===============================================
+#    Weapons
+# ===============================================
+
+func add_weapon(weapon_scene):
+	_sync_add_weapon.rpc(weapon_scene.get_path())
+
+@rpc("reliable", "call_local")
+func _sync_add_weapon(weapon_scene_filename):
+	var weapon = load(weapon_scene_filename).instantiate()
+	weapon.name = "Weapon"
+	
+	# Remove previous weapon
+	var prev_weapon = get_node("Weapon")
+	if prev_weapon:
+		remove_child(prev_weapon)
+		prev_weapon.queue_free()
+
+	add_child(weapon)
+
+
+
+# ===============================================
+#    On events
+# ===============================================
 
 func _on_pressed_attack():
 	if player_client_id == multiplayer.get_unique_id():
