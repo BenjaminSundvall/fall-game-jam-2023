@@ -2,48 +2,57 @@ extends CharacterBody2D
 
 enum InputMode {KEYBOARD, CONTROLLER}
 
-@export var health = 100
+@export var health = 10000
 @export var speed = 800
 @export var input_mode = InputMode.KEYBOARD
 
 const CONTROLLER_CROSSHAIR_DIST = 200
+const CAMERA_LOOKAHEAD = 200
 
 var aim_point = Vector2(CONTROLLER_CROSSHAIR_DIST, 0)
 var movement_input_vector = Vector2(0, 0)
 var aim_input_vector = Vector2(0, 0)
-var paused
+var paused = false
 
 func handle_input():
-	if !self.paused:
-		self.movement_input_vector = Input.get_vector("MoveLeft", "MoveRight", "MoveUp", "MoveDown")
-		self.aim_input_vector = Input.get_vector("AimLeft", "AimRight", "AimUp", "AimDown")
+	if self.paused:
+		self.velocity = Vector2(0,0)
+		return
+		
+	self.movement_input_vector = Input.get_vector("MoveLeft", "MoveRight", "MoveUp", "MoveDown")
+	self.aim_input_vector = Input.get_vector("AimLeft", "AimRight", "AimUp", "AimDown")
 
-		# Movement
-		self.velocity = self.speed * self.movement_input_vector
+	# Movement
+	self.velocity = self.speed * self.movement_input_vector
 
-		# Aim
-		if self.input_mode == InputMode.CONTROLLER and aim_input_vector:
-			self.aim_point = CONTROLLER_CROSSHAIR_DIST * aim_input_vector.normalized()
-		elif self.input_mode == InputMode.KEYBOARD:
-			self.aim_point = get_global_mouse_position() - position
-		$Crosshair.position = self.aim_point
+	# Aim
+	if self.input_mode == InputMode.CONTROLLER and aim_input_vector:
+		self.aim_point = CONTROLLER_CROSSHAIR_DIST * aim_input_vector.normalized()
+	elif self.input_mode == InputMode.KEYBOARD:
+		self.aim_point = get_global_mouse_position() - position
+	$Crosshair.position = self.aim_point
+	
+	# Set camera position
+	if self.aim_point.length() > CAMERA_LOOKAHEAD:
+		$Camera.position = CAMERA_LOOKAHEAD * self.aim_point.normalized()
+	else:
+		#$Camera.position = Vector2(0, 0)
 		$Camera.position = self.aim_point
 		
-		# Interact
-		if Input.is_action_just_pressed("Interact"):
-			print("Interact")
+	
+	# Interact
+	if Input.is_action_just_pressed("Interact"):
+		print("Interact")
 
-		# Dodge
-		if Input.is_action_just_pressed("Dodge"):
-			print("Dodge")
+	# Dodge
+	if Input.is_action_just_pressed("Dodge"):
+		print("Dodge")
 
-		# Attacking
-		if Input.is_action_just_pressed("Attack"):
-			print("Attack")
-			get_node("Weapon").attack(aim_point)
-	else:
-		self.velocity = Vector2(0,0)
-
+	# Attacking
+	if Input.is_action_just_pressed("Attack"):
+		print("Attack")
+		get_node("Weapon").attack(aim_point)
+		
 
 func take_damage(damage):
 	health -= damage
@@ -69,7 +78,6 @@ func _die():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	self.paused = false
 	pass # Replace with function body.
 
 

@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://by7ujwm60uric"]
+
+[ext_resource type="Script" path="res://Weapon/CroissantBoomerang.gd" id="1_mqkgt"]
+[ext_resource type="PackedScene" uid="uid://t8fkxcchr0he" path="res://Bullet/BoomerangBullet.tscn" id="2_qe65i"]
+[ext_resource type="Texture2D" uid="uid://dcldqnat1m2vi" path="res://icon.svg" id="2_xxhst"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hohlb"]
+
+[node name="Weapon" type="Node2D"]
+script = ExtResource("1_mqkgt")
+Bullet = ExtResource("2_qe65i")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_hohlb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("2_xxhst")

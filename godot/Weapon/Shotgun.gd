@@ -1,6 +1,6 @@
 extends Weapon
 
-var bullet_speed = 50
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -11,10 +11,11 @@ func _ready():
 func _process(delta):
 	pass
 
-
+var bullet_speed = 30
 var pellets = 5
 var damage_per_pellet = 5
 var spread = 30 #degrees
+var pellet_max_lifetime = 0.3 
 
 
 func attack(direction):
@@ -24,6 +25,7 @@ func attack(direction):
 		var angle = (randf()*spread - spread/2)*PI/180#radians
 		var new_dir = direction.rotated(angle)
 		get_node("/root").add_child(bullet)
+		bullet.max_lifetime = pellet_max_lifetime
 		bullet.speed = bullet_speed
 		bullet.enemy = enemy
 		bullet.global_position = global_position
