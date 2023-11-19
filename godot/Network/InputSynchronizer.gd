@@ -35,7 +35,7 @@ func _input(event):
 			aim_point = CONTROLLER_CROSSHAIR_DIST * aim_dir.normalized()
 	else:
 		aim_point = get_global_mouse_position() - player.position
-			
+		
 	if Input.is_action_just_pressed("Interact"):
 		pressed_interact.emit()
 

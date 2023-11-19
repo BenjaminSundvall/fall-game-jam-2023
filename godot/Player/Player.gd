@@ -38,6 +38,7 @@ func load(id, where, name, nameplate):
 func set_id(id):
 	player_client_id = id
 
+
 func physics_update():	
 	if player_client_id == multiplayer.get_unique_id():
 		if !self.paused:
@@ -55,11 +56,11 @@ func physics_update():
 		networked_data.sync_crosshair_postion = $Crosshair.position
 
 		# Set camera position
-		if self.aim_point.length() > CAMERA_LOOKAHEAD:
-			$Camera.position = CAMERA_LOOKAHEAD * self.aim_point.normalized()
+		if input.aim_point.length() > input.CONTROLLER_CROSSHAIR_DIST:
+			$Camera.position = input.CONTROLLER_CROSSHAIR_DIST * self.aim_point.normalized()
 		else:
 			#$Camera.position = Vector2(0, 0)
-			$Camera.position = self.aim_point
+			$Camera.position = input.aim_point
 
 		animate()
 		
@@ -88,19 +89,15 @@ func _die():
 	queue_free()
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	physics_update()
 
 
 func _on_pressed_attack():
+	if player_client_id == multiplayer.get_unique_id():
 	#print_debug("Attack")
-	get_node("Weapon").attack(aim_point)
+		get_node("Weapon").attack(input.aim_point)
 
 func _on_pressed_dodge():
 	#print_debug("Dodge")

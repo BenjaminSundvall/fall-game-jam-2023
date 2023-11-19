@@ -137,6 +137,7 @@ offset_bottom = 141.0
 text = "Muffin Man"
 
 [node name="ID" type="RichTextLabel" parent="Multiplayer"]
+layout_mode = 0
 offset_left = 704.0
 offset_top = 94.0
 offset_right = 941.0

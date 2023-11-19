@@ -72,7 +72,6 @@ func show_networking(visible=true):
 	$"HBoxContainer/IP input".visible = visible
 	$"Name field".editable = visible
 
-
 func _on_back_pressed():
 	show_networking()
 	$"Start Game".visible = false
