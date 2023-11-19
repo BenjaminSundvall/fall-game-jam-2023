@@ -15,8 +15,11 @@ func _ready():
 func _process(delta):
 	if weapon_vector:
 		rotation = weapon_vector.rotated(PI/2).angle()
-	
-func attack(direction):
+
+func attack_pressed(direction):
+	_attack(direction)
+
+func _attack(direction):
 	animate()
 	for i in range(dangerZone.size()):
 		dangerZone[i].take_damage(40)

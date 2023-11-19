@@ -133,6 +133,7 @@ replication_config = SubResource("SceneReplicationConfig_x3csi")
 
 [node name="Input Handler" type="Node2D" parent="."]
 script = ExtResource("6_o46po")
+input_mode = 1
 
 [node name="NetworkData" type="Node" parent="."]
 script = ExtResource("7_njoox")
@@ -148,3 +149,4 @@ horizontal_alignment = 1
 [connection signal="pressed_attack" from="Input Handler" to="." method="_on_pressed_attack"]
 [connection signal="pressed_dodge" from="Input Handler" to="." method="_on_pressed_dodge"]
 [connection signal="pressed_interact" from="Input Handler" to="." method="_on_pressed_interact"]
+[connection signal="released_attack" from="Input Handler" to="." method="_on_released_attack"]

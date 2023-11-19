@@ -1,7 +1,7 @@
 extends Bullet
-var distance = 500
+var distance
 var height = 250
-var time
+var time = 1
 
 var elapsed_time = 0
 var progress = 0
@@ -14,7 +14,6 @@ var enemies = []
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	speed = 300
-	time = distance/speed
 	connect("body_entered", _on_body_entered)
 	connect("body_exited", _on_body_exited)
 	get_node("Area2D").connect("body_entered", _on_inner_entered)

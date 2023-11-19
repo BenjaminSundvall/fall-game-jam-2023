@@ -18,8 +18,10 @@ var damage_per_pellet = 5
 var spread = 30 #degrees
 var pellet_max_lifetime = 0.3 
 
+func attack_pressed(direction):
+	_attack(direction)
 
-func attack(direction):
+func _attack(direction):
 	var enemy = _get_enemy()
 	for i in range(pellets):
 		var bullet = Bullet.instantiate()

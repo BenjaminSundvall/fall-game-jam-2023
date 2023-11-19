@@ -22,7 +22,10 @@ func _process(delta):
 		get_node("Sprite2D").visible = true
 	pass
 
-func attack(direction):
+func attack_pressed(direction):
+	_attack(direction)
+
+func _attack(direction):
 	if(holding):
 		holding = false
 		var enemy = _get_enemy()
