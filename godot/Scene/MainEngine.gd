@@ -50,7 +50,7 @@ func _initiate_player(name, weapon_i=-1):
 	var player = self.player.instantiate()
 
 	player.name = name
-	$Scene.add_child(player)
+	get_tree().get_nodes_in_group("Map")[0].add_child(player)	
 	players.append(player)
 
 	player.add_weapon(_initiate_weapon(weapon_i))
