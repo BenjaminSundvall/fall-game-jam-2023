@@ -10,6 +10,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	_movement(direction)
+	rotation = direction.rotated(PI/2).angle()
 	pass
 
 func _movement(dir):
@@ -17,10 +18,10 @@ func _movement(dir):
 	pass
 
 func _on_body_entered(body):
-	if (enemy == ""):
-		queue_free()
-	elif(body.is_in_group(enemy)):
+	if(body.is_in_group(enemy)):
 		body.take_damage(damage)
+		queue_free()
+	elif(body.is_in_group("bullet_collider")):
 		queue_free()
 	else:
 		pass

@@ -41,7 +41,7 @@ func start_online_game():
 func _initiate_weapon(i=-1):
 	var weapon_to_initiate
 	if 0 <= i and i < len(weapons):
-		weapon_to_initiate = 0
+		weapon_to_initiate = i
 	else:
 		weapon_to_initiate = randi() % len(weapons)
 	

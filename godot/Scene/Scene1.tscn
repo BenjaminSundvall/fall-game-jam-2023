@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://dsoega50hhiwr"]
 
-[ext_resource type="PackedScene" uid="uid://xsyng2vvhkvc" path="res://Tilemap/BakeryTileMap.tscn" id="1_tuqod"]
+[ext_resource type="PackedScene" path="res://Tilemap/BakeryTileMap.tscn" id="1_tuqod"]
 [ext_resource type="PackedScene" uid="uid://djqcpmmybus6q" path="res://Enemy/EnemyHandler.tscn" id="2_q3af5"]
-[ext_resource type="PackedScene" uid="uid://dtbh6a6swpwbe" path="res://Enemy/spawner.tscn" id="3_eh8ul"]
+[ext_resource type="PackedScene" path="res://Enemy/spawner.tscn" id="3_eh8ul"]
 
 [node name="Scene1" type="Node2D"]
 

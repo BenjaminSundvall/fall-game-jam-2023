@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://csa520uhaogpn"]
+[gd_scene load_steps=4 format=3 uid="uid://chid5gb1iktad"]
 
 [ext_resource type="Script" path="res://Weapon/FlourBag.gd" id="1_4hew1"]
 [ext_resource type="Texture2D" uid="uid://ccnsw4cih862u" path="res://Bullet/BulletSprites/flour sprite.png" id="2_ijup7"]

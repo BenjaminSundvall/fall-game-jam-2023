@@ -51,6 +51,7 @@ func _walking(to_where):
 func _attack(to_where):
 	var direction = (to_where-position).normalized()
 	weapon.attack(direction)
+	weapon.weapon_vector = direction
 
 func _die():
 	#Potential animations etc for dying
