@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://7tv17oluprfa"]
+[gd_scene load_steps=6 format=3 uid="uid://7tv17oluprfa"]
 
 [ext_resource type="PackedScene" uid="uid://r0sypiaqn3rn" path="res://Player/Player.tscn" id="1_wcg18"]
 [ext_resource type="Script" path="res://Network/NetworkManager.gd" id="2_m1t3d"]
 [ext_resource type="Script" path="res://Network/TestNetWorking.gd" id="3_s8v2v"]
+[ext_resource type="PackedScene" uid="uid://de62soql8i2c6" path="res://Weapon/Sword.tscn" id="2_updxs"]
 [ext_resource type="Script" path="res://GUI/Settings.gd" id="4_74s37"]
+[ext_resource type="PackedScene" uid="uid://djqcpmmybus6q" path="res://Enemy/EnemyHandler.tscn" id="4_lw713"]
+[ext_resource type="PackedScene" uid="uid://dtbh6a6swpwbe" path="res://Enemy/spawner.tscn" id="5_4lyrv"]
 
 [node name="Node2D" type="Node2D"]
 

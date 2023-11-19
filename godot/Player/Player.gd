@@ -4,6 +4,7 @@ extends CharacterBody2D
 @export var health = 100
 @export var speed = 800
 
+
 var paused
 
 @onready var input = $"Input Handler"
@@ -53,11 +54,20 @@ func physics_update():
 		networked_data.sync_position = position
 		networked_data.sync_crosshair_postion = $Crosshair.position
 
+		# Set camera position
+		if self.aim_point.length() > CAMERA_LOOKAHEAD:
+			$Camera.position = CAMERA_LOOKAHEAD * self.aim_point.normalized()
+		else:
+			#$Camera.position = Vector2(0, 0)
+			$Camera.position = self.aim_point
+
 		animate()
 		
 	else:
 		self.position = networked_data.sync_position
 		$Crosshair.position = networked_data.sync_crosshair_postion
+	
+
 
 func take_damage(damage):
 	health -= damage
@@ -77,6 +87,12 @@ func _die():
 	#code for dying
 	queue_free()
 
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	physics_update()
@@ -84,7 +100,7 @@ func _physics_process(delta):
 
 func _on_pressed_attack():
 	#print_debug("Attack")
-	get_node("Weapon").attack(input.aim_point)
+	get_node("Weapon").attack(aim_point)
 
 func _on_pressed_dodge():
 	#print_debug("Dodge")
