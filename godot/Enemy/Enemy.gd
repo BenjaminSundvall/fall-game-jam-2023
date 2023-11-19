@@ -32,14 +32,17 @@ func _process(delta):
 		self.attack = false
 		return
 	
-	var closest_player = players[0]
-	var shortest_dist = players[0].global_position - global_position 
+	var closest_player = null	
+	var shortest_dist = 1000
 	for player in players:
-		var dist = player.global_position-global_position
+		var dist = (player.global_position-global_position).length()
 		if (dist < shortest_dist)&&(player.alive):
 			shortest_dist = dist
 			closest_player = player
 	
+	if closest_player == null:
+		return
+		
 	_walking(closest_player.position)
 	if shoot:
 		_attack(closest_player.position)
