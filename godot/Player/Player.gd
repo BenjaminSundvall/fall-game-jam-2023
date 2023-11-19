@@ -64,7 +64,7 @@ func physics_update():
 			
 		# Set camera position
 		if input.input_mode == input.InputMode.CONTROLLER:
-			$Camera.position = 0.7 * CAMERA_LOOKAHEAD * self.aim_point.normalized()
+			$Camera.position = 0.7 * CAMERA_LOOKAHEAD * input.aim_point.normalized()
 		elif input.input_mode == input.InputMode.KEYBOARD:
 			var viewport = get_viewport()
 			var mouse_pos = 2 * (viewport.get_mouse_position() / viewport.get_visible_rect().size - Vector2(0.5, 0.5))

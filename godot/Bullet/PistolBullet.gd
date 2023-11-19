@@ -11,12 +11,13 @@ func _update_physics(delta):
 
 func _movement(dir):
 	position += dir * speed
+	rotation = direction.rotated(PI/2).angle()
 
 func _on_body_entered(body):
-	if (enemy == ""):
-		queue_free()
-	elif(body.is_in_group(enemy)):
+	if(body.is_in_group(enemy)):
 		body.take_damage(damage)
+		queue_free()
+	elif(body.is_in_group("bullet_collider")):
 		queue_free()
 	else:
 		pass

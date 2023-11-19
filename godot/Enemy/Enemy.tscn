@@ -2,16 +2,15 @@
 
 [ext_resource type="Script" path="res://Enemy/Enemy.gd" id="1_ukaqr"]
 [ext_resource type="Texture2D" uid="uid://dcldqnat1m2vi" path="res://icon.svg" id="2_gq3tx"]
-[ext_resource type="Shape2D" uid="uid://b7s20s7oa4w0f" path="res://Player/player_hitbox.tres" id="3_7iiw3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qfrux"]
 
 [node name="Enemy" type="CharacterBody2D" groups=["enemies"]]
 script = ExtResource("1_ukaqr")
 
-[node name="TextureRect" type="TextureRect" parent="."]
-offset_right = 128.0
-offset_bottom = 128.0
-texture = ExtResource("2_gq3tx")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(64, 64)
-shape = ExtResource("3_7iiw3")
+scale = Vector2(5, 5)
+shape = SubResource("RectangleShape2D_qfrux")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_gq3tx")

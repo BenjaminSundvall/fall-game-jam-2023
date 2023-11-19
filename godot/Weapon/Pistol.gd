@@ -11,7 +11,8 @@ func _process(delta):
 	
 # Overriden in subclasses
 func _physics_update(delta):
-	pass
+	if weapon_vector:
+		rotation = weapon_vector.rotated(PI/2).angle()
 
 func attack(direction):
 	var enemy = _get_enemy()

@@ -23,7 +23,7 @@ func _process(delta):
 func start_offline_game():
 	#print_debug("Offline?! You don't have friends?")
 	_switch_to_scene.rpc()
-	var player = _initiate_player("Player")
+	var player = _initiate_player("Player", 0)
 	player.load(1, Vector2.ZERO, "Player", false)
 	
 func start_online_game():
@@ -42,8 +42,8 @@ func start_online_game():
 		
 func _initiate_weapon(i=-1):
 	var weapon_to_initiate
-	if 0 < i and i < len(weapons):
-		weapon_to_initiate = 0
+	if 0 <= i and i < len(weapons):
+		weapon_to_initiate = i
 	else:
 		weapon_to_initiate = randi() % len(weapons)
 	
