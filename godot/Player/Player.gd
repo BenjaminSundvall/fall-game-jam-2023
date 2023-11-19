@@ -72,11 +72,11 @@ func take_damage(damage):
 func animate():
 	$PlayerSprite.flip_h = input.walk_direction.x < 0
 	
-	if $Weapon:
-		if input.aim_vector.x < 0:
+	if $Weapon and $Weapon/Sprite:
+		if input.aim_point.x < 0:
 			$Weapon/Sprite.flip_h = true
 			$Weapon/Sprite.position = Vector2(40, 0)
-		elif input.aim_vector.x > 0:
+		elif input.aim_point.x > 0:
 			$Weapon/Sprite.flip_h = false
 			$Weapon/Sprite.position = Vector2(-40, 0)
 
