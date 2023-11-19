@@ -66,7 +66,6 @@ func _on_connected_fail():
 	connected_players = {}
 	client_connection_fail.emit()
 
-# 
 func _on_server_disconnected():	
 	#print_debug(player_name + " : Server left me!")
 	multiplayer.multiplayer_peer = null

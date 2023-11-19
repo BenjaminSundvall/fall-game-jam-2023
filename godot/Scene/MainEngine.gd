@@ -57,7 +57,7 @@ func _initiate_player(name, weapon_i=-1):
 	
 	return player
 
-	
+
 # Everyone will manage their own change of scene
 @rpc("reliable", "call_local")
 func _switch_to_scene():

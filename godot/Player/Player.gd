@@ -47,6 +47,7 @@ func physics_update():
 			# Aim
 			$Crosshair.position = input.aim_point
 			$Camera.position = input.aim_point
+			$Weapon.weapon_vector = input.aim_point
 		else:
 			self.velocity = Vector2(0,0)
 		
@@ -54,20 +55,14 @@ func physics_update():
 		
 		networked_data.sync_position = position
 		networked_data.sync_crosshair_postion = $Crosshair.position
-
-		# Set camera position
-		if input.aim_point.length() > input.CONTROLLER_CROSSHAIR_DIST:
-			$Camera.position = input.CONTROLLER_CROSSHAIR_DIST * input.aim_point.normalized()
-		else:
-			#$Camera.position = Vector2(0, 0)
-			$Camera.position = input.aim_point
 		
 		animate()
 		
 	else:
 		self.position = networked_data.sync_position
 		$Crosshair.position = networked_data.sync_crosshair_postion
-	
+		$Weapon.weapon_vector = networked_data.sync_crosshair_postion
+
 
 func take_damage(damage):
 	health -= damage
@@ -108,6 +103,8 @@ func _sync_add_weapon(weapon_scene_filename):
 		remove_child(prev_weapon)
 		prev_weapon.queue_free()
 
+	weapon.weapon_vector = Vector2.UP
+	
 	add_child(weapon)
 
 

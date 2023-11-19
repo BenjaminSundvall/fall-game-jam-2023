@@ -133,7 +133,6 @@ replication_config = SubResource("SceneReplicationConfig_x3csi")
 
 [node name="Input Handler" type="Node2D" parent="."]
 script = ExtResource("6_o46po")
-input_mode = 1
 
 [node name="NetworkData" type="Node" parent="."]
 script = ExtResource("7_njoox")
