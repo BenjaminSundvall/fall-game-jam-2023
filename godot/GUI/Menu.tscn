@@ -1,18 +1,24 @@
-[gd_scene load_steps=2 format=3 uid="uid://bgiutsx34ru58"]
+[gd_scene load_steps=4 format=3 uid="uid://bgiutsx34ru58"]
 
 [ext_resource type="Script" path="res://GUI/Menu.gd" id="1_s05kc"]
+[ext_resource type="Script" path="res://GUI/MultiplayerMenu.gd" id="2_pxvvf"]
+
+[sub_resource type="Theme" id="Theme_ejxyc"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 11.0
+offset_top = -5.0
+offset_right = 11.0
+offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_s05kc")
 
 [node name="Menu" type="VBoxContainer" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -40,7 +46,12 @@ text = "Credits
 layout_mode = 2
 text = "Exit"
 
+[node name="Multiplayer" type="Button" parent="Menu"]
+layout_mode = 2
+text = "Multiplayer"
+
 [node name="Credits" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(800, 0)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -64,3 +75,79 @@ fit_content = true
 [node name="Back" type="Button" parent="Credits"]
 layout_mode = 2
 text = "Back"
+
+[node name="Multiplayer" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_pxvvf")
+
+[node name="Log" type="RichTextLabel" parent="Multiplayer"]
+layout_mode = 2
+offset_left = 212.0
+offset_top = 273.0
+offset_right = 908.0
+offset_bottom = 458.0
+theme = SubResource("Theme_ejxyc")
+fit_content = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Multiplayer"]
+layout_mode = 0
+offset_left = 168.0
+offset_top = 168.0
+offset_right = 974.0
+offset_bottom = 211.0
+theme_override_constants/separation = 18
+alignment = 1
+
+[node name="Back" type="Button" parent="Multiplayer/HBoxContainer"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+text = "Back"
+
+[node name="Server Start" type="Button" parent="Multiplayer/HBoxContainer"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+text = "Start Server"
+
+[node name="Client Join" type="Button" parent="Multiplayer/HBoxContainer"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+text = "Client join on"
+
+[node name="IP input" type="TextEdit" parent="Multiplayer/HBoxContainer"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+text = "127.0.0.1"
+
+[node name="Start Game" type="Button" parent="Multiplayer"]
+layout_mode = 0
+offset_left = 724.0
+offset_top = 170.0
+offset_right = 826.0
+offset_bottom = 207.0
+text = "Start Game"
+
+[node name="Name field" type="TextEdit" parent="Multiplayer"]
+layout_mode = 0
+offset_left = 460.0
+offset_top = 106.0
+offset_right = 670.0
+offset_bottom = 141.0
+text = "Muffin Man"
+
+[node name="ID" type="RichTextLabel" parent="Multiplayer"]
+layout_mode = 0
+offset_left = 704.0
+offset_top = 94.0
+offset_right = 941.0
+offset_bottom = 120.0
+theme = SubResource("Theme_ejxyc")
+fit_content = true
+
+[connection signal="pressed" from="Menu/Multiplayer" to="." method="_on_multiplayer_pressed"]
+[connection signal="pressed" from="Multiplayer/HBoxContainer/Back" to="." method="_on_back_up"]
+[connection signal="pressed" from="Multiplayer/HBoxContainer/Back" to="Multiplayer" method="_on_back_pressed"]
+[connection signal="pressed" from="Multiplayer/HBoxContainer/Server Start" to="Multiplayer" method="server_join"]
+[connection signal="pressed" from="Multiplayer/HBoxContainer/Client Join" to="Multiplayer" method="client_join"]
+[connection signal="pressed" from="Multiplayer/Start Game" to="." method="_on_start_online_game_pressed"]

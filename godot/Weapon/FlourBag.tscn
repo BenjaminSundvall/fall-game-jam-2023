@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://chid5gb1iktad"]
+
+[ext_resource type="Script" path="res://Weapon/FlourBag.gd" id="1_4hew1"]
+[ext_resource type="Texture2D" uid="uid://ccnsw4cih862u" path="res://Bullet/BulletSprites/flour sprite.png" id="2_ijup7"]
+[ext_resource type="PackedScene" uid="uid://s2advacftppt" path="res://Bullet/Grenade.tscn" id="2_oy7gl"]
+
+[node name="Weapon" type="Node2D"]
+script = ExtResource("1_4hew1")
+Bullet = ExtResource("2_oy7gl")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(-40, 0)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_ijup7")
+hframes = 6
+vframes = 2
