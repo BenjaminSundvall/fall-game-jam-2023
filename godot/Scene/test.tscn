@@ -1,11 +1,16 @@
 [gd_scene load_steps=5 format=3 uid="uid://7tv17oluprfa"]
 
 [ext_resource type="PackedScene" uid="uid://r0sypiaqn3rn" path="res://Player/Player.tscn" id="1_wcg18"]
-[ext_resource type="Script" path="res://Network/NetworkManager.gd" id="2_m1t3d"]
-[ext_resource type="Script" path="res://Network/TestNetWorking.gd" id="3_s8v2v"]
+[ext_resource type="PackedScene" uid="uid://dbjf3mj0tcf7w" path="res://Weapon/Shotgun.tscn" id="2_ugmfy"]
 [ext_resource type="Script" path="res://GUI/Settings.gd" id="4_74s37"]
+[ext_resource type="PackedScene" uid="uid://djqcpmmybus6q" path="res://Enemy/EnemyHandler.tscn" id="4_lw713"]
+[ext_resource type="PackedScene" path="res://Enemy/spawner.tscn" id="5_4lyrv"]
 
 [node name="Node2D" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_wcg18")]
+
+[node name="Weapon" parent="Player" instance=ExtResource("2_ugmfy")]
 
 [node name="Settings" type="Control" parent="."]
 layout_direction = 1

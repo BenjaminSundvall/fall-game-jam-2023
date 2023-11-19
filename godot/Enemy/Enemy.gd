@@ -26,7 +26,7 @@ func _process(delta):
 		last_time = cur_time
 		
 	Time.get_ticks_msec()
-	if (attack):	
+	if (attack):
 		_walking(player.position)
 		if shoot:
 			_attack(player.position)

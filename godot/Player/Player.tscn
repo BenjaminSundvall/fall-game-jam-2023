@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://r0sypiaqn3rn"]
+[gd_scene load_steps=14 format=3 uid="uid://r0sypiaqn3rn"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_304ua"]
 [ext_resource type="Texture2D" uid="uid://cfik6i6ivsvun" path="res://Player/player.png" id="1_q75xs"]
@@ -120,8 +120,6 @@ shape = ExtResource("2_251kr")
 [node name="Crosshair" type="Sprite2D" parent="."]
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("3_cnrdk")
-
-[node name="Weapon" parent="." instance=ExtResource("5_7306w")]
 
 [node name="Camera" type="Camera2D" parent="."]
 zoom = Vector2(0.75, 0.75)

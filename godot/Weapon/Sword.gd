@@ -19,7 +19,6 @@ func attack(direction):
 	$AnimationPlayer.seek(1)
 	$AnimationPlayer.play("attackAnimation")
 	for i in range(dangerZone.size()):
-		print("alalal")
 		dangerZone[i].take_damage(40)
 	
 
