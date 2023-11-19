@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://bxdy4ht0dcdbw"]
 
 [ext_resource type="Script" path="res://Scene/MainEngine.gd" id="1_84ill"]
-[ext_resource type="PackedScene" uid="uid://dsoega50hhiwr" path="res://Scene/Scene1.tscn" id="2_6niem"]
+[ext_resource type="PackedScene" uid="uid://deosse0web780" path="res://Scene/Arena.tscn" id="2_0us1w"]
 [ext_resource type="PackedScene" uid="uid://bgiutsx34ru58" path="res://GUI/Menu.tscn" id="2_een8q"]
 [ext_resource type="Script" path="res://Network/NetworkManager.gd" id="3_s1nwt"]
 [ext_resource type="PackedScene" uid="uid://by7ujwm60uric" path="res://Weapon/CroissantBoomerang.tscn" id="4_4odep"]
@@ -13,7 +13,7 @@
 
 [node name="MainScene" type="Node2D"]
 script = ExtResource("1_84ill")
-scene = ExtResource("2_6niem")
+scene = ExtResource("2_0us1w")
 player = ExtResource("5_lyjst")
 weapons = Array[PackedScene]([ExtResource("4_4odep"), ExtResource("5_moxda"), ExtResource("6_wnvtl"), ExtResource("7_pk7sk"), ExtResource("8_4xd17")])
 
