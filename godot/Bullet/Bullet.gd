@@ -18,9 +18,14 @@ func _ready():
 func _process(delta):
 	if multiplayer.get_unique_id() == get_multiplayer_authority():
 		_update_physics(delta)
+		
+		if sync_data:
+			print_debug("HIT")
+			sync_data.sync_position = position
+			sync_data.sync_direction = direction
 	else:
 		position = sync_data.sync_position
-		rotation = sync_data.sync_rotation
+		direction = sync_data.sync_direction
 	
 func _update_physics(delta):
 	pass

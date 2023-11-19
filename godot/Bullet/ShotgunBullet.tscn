@@ -1,10 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://dgricu5yqddda"]
+[gd_scene load_steps=6 format=3 uid="uid://bmxv78a24qg8a"]
 
 [ext_resource type="Script" path="res://Bullet/ShotgunBullet.gd" id="1_y0ov7"]
 [ext_resource type="Texture2D" uid="uid://bvm50jw53qxfe" path="res://Bullet/BulletSprites/seed- range.png" id="2_fmjng"]
+[ext_resource type="Script" path="res://Network/BulletData.gd" id="3_jud51"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_i4cfx"]
 radius = 14.1421
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_m4rve"]
+properties/0/path = NodePath("BulletData:sync_position")
+properties/0/spawn = true
+properties/0/sync = true
+properties/0/watch = false
+properties/1/path = NodePath("BulletData:sync_direction")
+properties/1/spawn = true
+properties/1/sync = true
+properties/1/watch = false
 
 [node name="ShotgunBullet" type="Area2D"]
 script = ExtResource("1_y0ov7")
@@ -15,3 +26,9 @@ shape = SubResource("CircleShape2D_i4cfx")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("2_fmjng")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_m4rve")
+
+[node name="BulletData" type="Node" parent="."]
+script = ExtResource("3_jud51")

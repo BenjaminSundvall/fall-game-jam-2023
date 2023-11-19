@@ -49,7 +49,9 @@ func physics_update():
 	if player_client_id != multiplayer.get_unique_id():
 		self.position = networked_data.sync_position
 		$Crosshair.position = networked_data.sync_crosshair_postion
-		$Weapon.weapon_vector = networked_data.sync_crosshair_postion
+		var weapon = $Weapon 
+		if weapon:
+			weapon.weapon_vector = networked_data.sync_crosshair_postion
 		return
 	
 	if !self.paused:
@@ -123,6 +125,7 @@ func add_weapon(weapon_scene):
 @rpc("reliable", "call_local")
 func _sync_add_weapon(weapon_scene_filename):
 	var weapon = load(weapon_scene_filename).instantiate()
+	#var weapon = weapon_scene.instantiate()
 	weapon.name = "Weapon"
 	
 	# Remove previous weapon

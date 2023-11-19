@@ -12,7 +12,6 @@ func _ready(): # TODO: Make not direct
 	#print_debug(player)
 	attack = false
 	weapon = get_node("Weapon")
-	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

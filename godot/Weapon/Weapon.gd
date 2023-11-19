@@ -15,8 +15,6 @@ func _ready():
 func _process(delta):
 	if get_multiplayer_authority() == multiplayer.get_unique_id():
 		_update_physics(delta)
-	else:
-		position = 
 
 @rpc("authority", "call_local")
 func attack(direction):
@@ -28,7 +26,7 @@ func _update_physics(delta):
 	
 func spawn_bullet(bullet):
 	bullet.name = "Bullet"
-	get_tree().get_first_node_in_group("Map").add_child(bullet)
+	get_tree().get_first_node_in_group("Map").add_child(bullet, true)
 	
 func _get_enemy():
 	if get_parent().is_in_group("players"):

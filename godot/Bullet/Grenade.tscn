@@ -1,8 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://s2advacftppt"]
+[gd_scene load_steps=20 format=3 uid="uid://s2advacftppt"]
 
 [ext_resource type="Script" path="res://Bullet/Grenade.gd" id="1_fd7d6"]
 [ext_resource type="Texture2D" uid="uid://ccnsw4cih862u" path="res://Bullet/BulletSprites/flour sprite.png" id="2_yn5up"]
 [ext_resource type="Texture2D" uid="uid://r5xwsxy6jjov" path="res://Bullet/BulletSprites/iu.png" id="3_jdjni"]
+[ext_resource type="Script" path="res://Network/BulletData.gd" id="4_j7tcn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lxrqr"]
 
@@ -98,6 +99,16 @@ animations = [{
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r6tlr"]
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_nwsv8"]
+properties/0/path = NodePath("BulletData:sync_position")
+properties/0/spawn = true
+properties/0/sync = true
+properties/0/watch = false
+properties/1/path = NodePath("BulletData:sync_direction")
+properties/1/spawn = true
+properties/1/sync = true
+properties/1/watch = false
+
 [node name="Bullet" type="Area2D"]
 script = ExtResource("1_fd7d6")
 
@@ -122,3 +133,9 @@ shape = SubResource("CircleShape2D_r6tlr")
 modulate = Color(1, 1, 1, 0.196078)
 scale = Vector2(0.3, 0.15)
 texture = ExtResource("3_jdjni")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_nwsv8")
+
+[node name="BulletData" type="Node" parent="."]
+script = ExtResource("4_j7tcn")
