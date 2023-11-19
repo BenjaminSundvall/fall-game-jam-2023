@@ -8,7 +8,7 @@ var health = 100
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	player = $"../Player" # TODO: Make not direct
-	print_debug(player)
+	#print_debug(player)
 	attack = false
 	pass # Replace with function body.
 

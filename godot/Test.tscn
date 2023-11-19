@@ -1,0 +1,57 @@
+[gd_scene load_steps=6 format=3 uid="uid://byenurbt2j26d"]
+
+[ext_resource type="Script" path="res://new_script.gd" id="1_2dwej"]
+[ext_resource type="Texture2D" uid="uid://dcldqnat1m2vi" path="res://icon.svg" id="1_6oa0s"]
+[ext_resource type="Shape2D" path="res://player_hitbox.tres" id="3_17cfo"]
+[ext_resource type="Script" path="res://NetworkManager.gd" id="4_xwbox"]
+
+[sub_resource type="GDScript" id="GDScript_ocbnk"]
+script/source = "extends Node
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Player" type="CharacterBody2D" parent="."]
+script = ExtResource("1_2dwej")
+
+[node name="TextureRect" type="TextureRect" parent="Player"]
+offset_right = 128.0
+offset_bottom = 128.0
+texture = ExtResource("1_6oa0s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(64, 64)
+shape = ExtResource("3_17cfo")
+
+[node name="NetworkManager" type="Node" parent="."]
+script = ExtResource("4_xwbox")
+
+[node name="TestNetWorking" type="Node" parent="."]
+script = SubResource("GDScript_ocbnk")
+
+[node name="Start Server" type="Button" parent="TestNetWorking"]
+offset_left = 17.0
+offset_top = 568.0
+offset_right = 95.0
+offset_bottom = 636.0
+text = "Server"
+
+[node name="Start Client" type="Button" parent="TestNetWorking"]
+offset_left = 104.0
+offset_top = 568.0
+offset_right = 191.0
+offset_bottom = 640.0
+text = "Client"
+
+[connection signal="pressed" from="TestNetWorking/Start Server" to="TestNetWorking" method="_on_start_server_pressed"]
+[connection signal="pressed" from="TestNetWorking/Start Client" to="TestNetWorking" method="_on_start_client_pressed"]
