@@ -1,58 +1,68 @@
 extends CharacterBody2D
 
-enum InputMode {KEYBOARD, CONTROLLER}
-
-@export var health = 10000
+@export var player_client_id := 1
+@export var health = 100
 @export var speed = 800
-@export var input_mode = InputMode.KEYBOARD
 
-const CONTROLLER_CROSSHAIR_DIST = 200
-const CAMERA_LOOKAHEAD = 200
 
-var aim_point = Vector2(CONTROLLER_CROSSHAIR_DIST, 0)
-var movement_input_vector = Vector2(0, 0)
-var aim_input_vector = Vector2(0, 0)
-var paused = false
+var paused
 
-func handle_input():
-	if self.paused:
-		self.velocity = Vector2(0,0)
-		return
-		
-	self.movement_input_vector = Input.get_vector("MoveLeft", "MoveRight", "MoveUp", "MoveDown")
-	self.aim_input_vector = Input.get_vector("AimLeft", "AimRight", "AimUp", "AimDown")
+@onready var input = $"Input Handler"
+@onready var networked_data = $NetworkData
 
-	# Movement
-	self.velocity = self.speed * self.movement_input_vector
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	self.paused = false
 
-	# Aim
-	if self.input_mode == InputMode.CONTROLLER and aim_input_vector:
-		self.aim_point = CONTROLLER_CROSSHAIR_DIST * aim_input_vector.normalized()
-	elif self.input_mode == InputMode.KEYBOARD:
-		self.aim_point = get_global_mouse_position() - position
-	$Crosshair.position = self.aim_point
+@rpc("reliable", "call_local")
+func load(id, where, name, nameplate):
 	
-	# Set camera position
-	if self.aim_point.length() > CAMERA_LOOKAHEAD:
-		$Camera.position = CAMERA_LOOKAHEAD * self.aim_point.normalized()
+	networked_data.sync_position = where
+	position = where
+
+	networked_data.sync_crosshair_postion = Vector2.ZERO
+	$Crosshair.position = Vector2.ZERO
+
+	networked_data.sync_client_id = id
+	player_client_id = id
+	set_multiplayer_authority(id)
+	if id == multiplayer.get_unique_id():
+		$Camera.make_current()
+
+#	self.name = "Player " + name 
+	$Label.visible = nameplate
+	$Label.text = name
+
+
+@rpc("reliable")
+func set_id(id):
+	player_client_id = id
+
+
+func physics_update():	
+	if player_client_id == multiplayer.get_unique_id():
+		if !self.paused:
+			# Movement
+			self.velocity = self.speed * input.walk_direction
+			# Aim
+			$Crosshair.position = input.aim_point
+			$Camera.position = input.aim_point
+			$Weapon.weapon_vector = input.aim_point
+		else:
+			self.velocity = Vector2(0,0)
+		
+		move_and_slide()
+		
+		networked_data.sync_position = position
+		networked_data.sync_crosshair_postion = $Crosshair.position
+		
+		animate()
+		
 	else:
-		#$Camera.position = Vector2(0, 0)
-		$Camera.position = self.aim_point
-		
-	
-	# Interact
-	if Input.is_action_just_pressed("Interact"):
-		print("Interact")
+		self.position = networked_data.sync_position
+		$Crosshair.position = networked_data.sync_crosshair_postion
+		$Weapon.weapon_vector = networked_data.sync_crosshair_postion
 
-	# Dodge
-	if Input.is_action_just_pressed("Dodge"):
-		print("Dodge")
-
-	# Attacking
-	if Input.is_action_just_pressed("Attack"):
-		print("Attack")
-		get_node("Weapon").attack(aim_point)
-		
 
 func take_damage(damage):
 	health -= damage
@@ -60,31 +70,58 @@ func take_damage(damage):
 		_die()
 
 func animate():
-	if self.movement_input_vector.x < 0:
-		$PlayerSprite.flip_h = true
-	elif self.movement_input_vector.x > 0:
-		$PlayerSprite.flip_h = false
-
-	if self.movement_input_vector:
+	$PlayerSprite.flip_h = input.walk_direction.x < 0
+	
+	if input.walk_direction:
 		$PlayerSprite.play("player_move")
 	else:
 		$PlayerSprite.play("player_idle")
-
 
 func _die():
 	#code for dying
 	queue_free()
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	handle_input()
-	animate()
-	move_and_slide()
-	get_node("Weapon").weapon_vector = aim_point
+	physics_update()
+
+# ===============================================
+#    Weapons
+# ===============================================
+
+func add_weapon(weapon_scene):
+	_sync_add_weapon.rpc(weapon_scene.get_path())
+
+@rpc("reliable", "call_local")
+func _sync_add_weapon(weapon_scene_filename):
+	var weapon = load(weapon_scene_filename).instantiate()
+	weapon.name = "Weapon"
 	
+	# Remove previous weapon
+	var prev_weapon = get_node("Weapon")
+	if prev_weapon:
+		remove_child(prev_weapon)
+		prev_weapon.queue_free()
+
+	weapon.weapon_vector = Vector2.UP
+	
+	add_child(weapon)
+
+
+
+# ===============================================
+#    On events
+# ===============================================
+
+func _on_pressed_attack():
+	if player_client_id == multiplayer.get_unique_id():
+	#print_debug("Attack")
+		get_node("Weapon").attack(input.aim_point)
+
+func _on_pressed_dodge():
+	#print_debug("Dodge")
+	pass
+
+func _on_pressed_interact():
+	#print_debug("Interact")
+	pass

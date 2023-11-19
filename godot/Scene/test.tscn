@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://7tv17oluprfa"]
+[gd_scene load_steps=5 format=3 uid="uid://7tv17oluprfa"]
 
 [ext_resource type="PackedScene" uid="uid://r0sypiaqn3rn" path="res://Player/Player.tscn" id="1_wcg18"]
 [ext_resource type="PackedScene" uid="uid://dbjf3mj0tcf7w" path="res://Weapon/Shotgun.tscn" id="2_ugmfy"]
@@ -48,13 +48,43 @@ text = "Exit"
 layout_mode = 2
 text = "Restart"
 
-[node name="EnemyHandler" parent="." instance=ExtResource("4_lw713")]
+[node name="NetWork ManAnger" type="Node" parent="."]
+script = ExtResource("2_m1t3d")
 
-[node name="spawner" parent="." instance=ExtResource("5_4lyrv")]
-position = Vector2(572, 138)
+[node name="Test NetWork" type="Node" parent="NetWork ManAnger"]
+script = ExtResource("3_s8v2v")
+player = ExtResource("1_wcg18")
 
-[node name="spawner2" parent="." instance=ExtResource("5_4lyrv")]
-position = Vector2(131, 417)
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="NetWork ManAnger"]
+_spawnable_scenes = PackedStringArray("res://Player/Player.tscn")
+spawn_path = NodePath("../../Scene")
 
-[node name="spawner3" parent="." instance=ExtResource("5_4lyrv")]
-position = Vector2(954, 479)
+[node name="Server Button" type="Button" parent="NetWork ManAnger"]
+offset_left = 8.0
+offset_top = 604.0
+offset_right = 123.0
+offset_bottom = 635.0
+text = "Server button
+"
+
+[node name="Client Button" type="Button" parent="NetWork ManAnger"]
+offset_left = 135.0
+offset_top = 604.0
+offset_right = 245.0
+offset_bottom = 635.0
+text = "Client button
+"
+
+[node name="Client 2 Button" type="Button" parent="NetWork ManAnger"]
+offset_left = 257.0
+offset_top = 604.0
+offset_right = 380.0
+offset_bottom = 635.0
+text = "Client 2 button"
+
+[node name="Scene" type="Node2D" parent="."]
+
+[connection signal="player_connect" from="NetWork ManAnger" to="NetWork ManAnger/Test NetWork" method="_on_net_work_man_anger_player_connect"]
+[connection signal="pressed" from="NetWork ManAnger/Server Button" to="NetWork ManAnger/Test NetWork" method="_on_start_server_pressed"]
+[connection signal="pressed" from="NetWork ManAnger/Client Button" to="NetWork ManAnger/Test NetWork" method="_on_start_client_pressed"]
+[connection signal="pressed" from="NetWork ManAnger/Client 2 Button" to="NetWork ManAnger/Test NetWork" method="_on_start_client_2_pressed"]

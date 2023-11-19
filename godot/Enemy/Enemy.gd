@@ -10,7 +10,8 @@ var last_time = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	player = get_node("/root/Node2D/Player") # TODO: Make not direct
+	player = $"../Player" # TODO: Make not direct
+	#print_debug(player)
 	attack = false
 	weapon = get_node("Weapon")
 	pass # Replace with function body.
