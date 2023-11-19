@@ -11,6 +11,7 @@ var paused
 @onready var networked_data = $NetworkData
 
 const CAMERA_LOOKAHEAD = 360
+var alive = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -41,7 +42,7 @@ func set_id(id):
 	player_client_id = id
 
 
-func physics_update():	
+func physics_update():
 	if player_client_id != multiplayer.get_unique_id():
 		self.position = networked_data.sync_position
 		$Crosshair.position = networked_data.sync_crosshair_postion
@@ -102,7 +103,19 @@ func animate():
 
 func _die():
 	#code for dying
-	queue_free()
+	#queue_free()
+	self.alive = false
+	self.visible = false
+	self.paused = true
+	$CollisionShape2D.disabled = true
+	self.position = Vector2(0, 0)
+
+func _respawn():
+	self.alive = true
+	self.visible = true
+	self.paused = false
+	$CollisionShape2D.disabled = false
+	self.position = Vector2(0, 0)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
@@ -147,4 +160,5 @@ func _on_pressed_dodge():
 
 func _on_pressed_interact():
 	#print_debug("Interact")
-	pass
+	if not self.alive:
+		_respawn()

@@ -112,7 +112,7 @@ animation = &"player_idle"
 frame_progress = 0.345434
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 7)
+position = Vector2(-3.5, 44)
 scale = Vector2(0.4, 0.4)
 shape = ExtResource("2_251kr")
 
@@ -133,6 +133,7 @@ replication_config = SubResource("SceneReplicationConfig_x3csi")
 
 [node name="Input Handler" type="Node2D" parent="."]
 script = ExtResource("6_o46po")
+input_mode = 1
 
 [node name="NetworkData" type="Node" parent="."]
 script = ExtResource("7_njoox")
