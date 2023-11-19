@@ -27,12 +27,13 @@ func start_offline_game():
 func start_online_game():
 	#print_debug("I will try!")
 	_switch_to_scene.rpc()
-	var players_to_initiate = $"NetWork ManAnger".connected_players
+	var network_manager = $"NetWork ManAnger"
+	var players_to_initiate = network_manager.connected_players
 	
 	var some_pos = Vector2(SPAWN_DIST, 0)
 	
 	for player_id in players_to_initiate:
-		var player_name = $"NetWork ManAnger".connected_players[player_id]
+		var player_name = network_manager.connected_players[player_id]
 		var player = _initiate_player(player_name)
 		some_pos = some_pos.rotated(2*PI/len(players_to_initiate))
 		player.load.rpc(player_id, some_pos, player_name, true)	
@@ -61,8 +62,11 @@ func _initiate_player(name, weapon_i=-1):
 # Everyone will manage their own change of scene
 @rpc("reliable", "call_local")
 func _switch_to_scene():
-	var menu = $Scene/Control
-	remove_child(menu)
+	
+	var top_scene = $Scene
+	
+	var menu = top_scene.get_node("Control")
+	top_scene.remove_child(menu)
 	menu.queue_free()
 	
 	var real_scene = scene.instantiate()

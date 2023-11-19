@@ -62,12 +62,10 @@ func _travel_height():
 	var b = direction.x*distance
 	
 	return Vector2(x, -height*_parabola(x,a,b)/_parabola((a+b)/2,a,b))
-	pass
 	
 func _parabola(x,a,b):
 	return((x)**2 - ((a+b)*x) + (a*b))
 
 func _travel_dir():
 	return direction*progress*distance
-	pass
 

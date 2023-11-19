@@ -19,6 +19,7 @@ func _process(delta):
 	rotation = weapon_vector.angle()
 	if(boolet == null):
 		holding = true
+		get_node("Sprite2D").visible = true
 	pass
 
 func attack(direction):
@@ -35,6 +36,8 @@ func attack(direction):
 		bullet.player_who_shot = parent
 		bullet.min_lifetime = min_lifetime
 		bullet.velocity_vector = direction.normalized() * boomerang_speed
+		get_node("Sprite2D").visible = false
+		
 
 	
 	
